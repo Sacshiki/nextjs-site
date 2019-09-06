@@ -1,0 +1,1 @@
+{"name":"nextjs","dependencies":{"express":"^4.17.1","next":"^9.0.5","nodemailer":"^6.3.0","nodemailer-sendgrid-transport":"^0.2.0","react":"^16.9.0","react-dom":"^16.9.0"},"scripts":{"dev":"node server.js","build":"next build","start":"next start"},"version":"","readme":"ERROR: No README data found!","_id":"nextjs@"}
