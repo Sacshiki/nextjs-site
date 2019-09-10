@@ -2,16 +2,7 @@ import { Component } from 'react'
 import Head from 'next/head'
 import 'isomorphic-fetch'
 
-// App Specific
-import Layout from 'layout'
-
-import { Form, Input, Progress } from 'antd';
-// import ProgressButton from 'components/ProgressButton'
-
-import {
-  Form,
-  Input
-} from 'components/forms/index'
+import { Form, Input, Progress, Layout } from 'antd';
 
 class Contact extends Component {
   constructor (props) {
