@@ -1,6 +1,7 @@
 {
   "name": "nextjs",
   "dependencies": {
+    "antd": "^3.23.2",
     "express": "^4.17.1",
     "next": "^9.0.5",
     "nodemailer": "^6.3.0",

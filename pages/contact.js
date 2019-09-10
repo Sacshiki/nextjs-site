@@ -5,7 +5,8 @@ import 'isomorphic-fetch'
 // App Specific
 import Layout from 'layout'
 
-import ProgressButton from 'components/ProgressButton'
+import { Form, Input, Progress } from 'antd';
+// import ProgressButton from 'components/ProgressButton'
 
 import {
   Form,
@@ -42,13 +43,11 @@ class Contact extends Component {
         <div id='container' className='contact'>
           <div>
             <div>
-              <Form>
-              {({ validateForm, getPayload }) => {
-                return (
-                  <form className="board-form" onSubmit={e => {
+              <Form onSubmit={e => {
                     e.preventDefault()
                     validateForm() && this.submitForm(getPayload())
                   }}>
+                  <Form.Item>
                     <h2>Contact</h2>
                     <div className="f fw grid-row--s">
                       <div className="mb1 pb05">
@@ -59,7 +58,7 @@ class Contact extends Component {
                       </div>
                     </div>
 
-                    <ProgressButton
+                    <Progress
                       className="button green"
                       formNoValidate={true}
                       inProgress={this.state.submitting}
@@ -67,11 +66,9 @@ class Contact extends Component {
                       isDone={this.state.submitted}
                       isDoneText='Submitted'>
                       Submit Form
-                    </ProgressButton>
+                    </Progress>
 
-                  </form>
-                )
-              }}
+                  </Form.Item >
             </Form>
             </div>
           </div>
