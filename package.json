@@ -1,6 +1,7 @@
 {
   "name": "nextjs",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "antd": "^3.23.2",
     "express": "^4.17.1",
     "next": "^9.0.5",
