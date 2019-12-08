@@ -8,10 +8,11 @@ const transporter = nodemailer.createTransport(sgTransport({
 }))
 
 const send = ({ email, name, text }) => {
+  console.log("API KEY: ", process.env.SENDGRIDAPI)
   const from = name && email ? `${name} <${email}>` : `${name || email}`
   const message = {
     from,
-    to: 'kevin@thecouch.nyc',
+    to: 'wilsonaustin17@gmail.com',
     subject: `New message from ${from}`,
     text,
     replyTo: from
@@ -23,3 +24,5 @@ const send = ({ email, name, text }) => {
     )
   })
 }
+
+exports.send = send;

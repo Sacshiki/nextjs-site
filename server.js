@@ -7,7 +7,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const mailer = require('./sendgrid-mailer')
+const mailer = require('./sendgrid-mailer.js')
+console.log(mailer);
 
 app.prepare().then(() => {
   const server = express()
@@ -16,13 +17,13 @@ app.prepare().then(() => {
 
   server.post('/api/contact', (req, res) => {
     const { email = '', name = '', message = '' } = req.body
+    console.log(req.body);
 
-    mailer({ email, name, text: message }).then(() => {
-      console.log('success')
-      res.send('success')
+    mailer.send({ email, name, text: message }).then(() => {
+      res.send("OK")
     }).catch((error) => {
-      console.log('failed', error)
-      res.send('badddd')
+      console.log('/api/contact failed', error)
+      res.status(500).json({error: "email could not be sent"})
     })
   })
 
