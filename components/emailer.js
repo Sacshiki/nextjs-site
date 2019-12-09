@@ -19,7 +19,7 @@ class Emailer extends Component {
     });
   }
 
-  submitForm (data) {
+  submitForm (data) { // returns a Promise
     return fetch('/api/contact', {
       method: 'post',
       headers: {
@@ -36,7 +36,7 @@ class Emailer extends Component {
   }
 
   clickSubmit (e) {
-    let success = false;
+    let success = false; // if this becomes true, the input changes to a thank you msg
     this.setState({isSubmitting: true});
     let email = this.state.email;
 
@@ -62,6 +62,7 @@ class Emailer extends Component {
         description: `'${email}' is not a valid email. Please try again`,
       });
     }//if validemail
+
     this.setState({isSubmitting: false, hasSubmitted: success});
   }
 

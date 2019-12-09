@@ -2,7 +2,9 @@ import React from 'react'
 import Header from '../components/header.js'
 import Footer from '../components/footer.js'
 import Emailer from '../components/emailer.js'
+import Gallery from '../components/gallery.js'
 import { Component } from 'react'
+const { getImages, strapiUrl } = require('../utils/strapi.js')
 
 import {
   Row,
@@ -14,11 +16,25 @@ import {
 import stylesheet from 'antd/dist/antd.min.css'
 
 class Card1 extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      imageUrl: "/static/images/back_1.jpg",
+    }
+    getImages("hp-hero").then((slides) => {
+      if (slides.length > 0) {
+        this.setState({
+          imageUrl: `${strapiUrl}${slides[0].Image.url}`,
+        });
+      }
+    });
+  }
+
   // TODO fonts, text spacing
   render () {
     return (
       <div id='card1' className='card'>
-        <img id='model1' src="/static/images/back_1.jpg" alt="model1" />
+        <img id='model1' src={this.state.imageUrl} alt="model1" />
         <div id='maintext'>
           <div className='title'>Your Most Useful Pocket</div>
           <div className='subtitle'>An accessory you didn&#8217;t know you needed</div>
@@ -78,20 +94,7 @@ class Card2 extends Component {
         <Row>
           <Col span={12}>
             <div id='slide1'>
-              <Carousel id='slide1'>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                  <h3 className='caption'> test caption 1</h3>
-                </div>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                  <h3 className='caption'> test caption 2</h3>
-                </div>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                  <h3 className='caption'> test caption 3</h3>
-                </div>
-              </Carousel>
+              <Gallery slug='hp-test' height='50vw' width='50vw'/>
             </div>
           </Col>
           <Col span={12}>
@@ -112,16 +115,6 @@ class Card2 extends Component {
           #slide1 {
             height: 40vw;
             width: 40vw;
-          }
-          .slideimg {
-            height: 40vw;
-            width: 40vw;
-            object-fit: cover;
-          }
-          .caption {
-            position: absolute;
-            top: 5px;
-            z-index: 50;
           }
           #card2content {
             color: black;
@@ -146,17 +139,7 @@ class Card3 extends Component {
           </Col>
           <Col span={12}>
             <div id='slide2'>
-              <Carousel id='slide2'>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                </div>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                </div>
-                <div>
-                  <img className='slideimg' src="/static/images/back_1.jpg" alt="model1" />
-                </div>
-              </Carousel>
+              <Gallery slug='hp-test' height='50vw' width='50vw'/>
             </div>
           </Col>
         </Row>
@@ -169,16 +152,6 @@ class Card3 extends Component {
           #slide2 {
             height: 50vw;
             width: 50vw;
-          }
-          .slideimg {
-            height: 50vw;
-            width: 50vw;
-            object-fit: cover;
-          }
-          .caption {
-            position: absolute;
-            top: 5px;
-            z-index: 50;
           }
           #card2content {
             color: black;
