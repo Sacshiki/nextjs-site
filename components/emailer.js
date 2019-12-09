@@ -20,21 +20,13 @@ class Emailer extends Component {
   }
 
   submitForm (data) {
-    fetch('/api/contact', {
+    return fetch('/api/contact', {
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        this.setState({ hasSubmitted: true });
-        return true;
-      } else {
-        return false;
-      }
     })
   }
 
@@ -49,24 +41,27 @@ class Emailer extends Component {
     let email = this.state.email;
 
     if (this.validateEmail(email)) {
-      if (this.submitForm({email})) {
-        success = true;
-        notification.success({
-          message: "Sign-Up Success!",
-          description: `Thank you for signing up for Sacshiki. We'll be in touch.`,
-        });
-      } else {
-        notification.error({
-          message: "Email Not Sent",
-          description: `Something went wrong. Please try again`,
-        });
-      }
+      this.submitForm({email}).then((res) => {
+        if (res.status === 200) {
+          success = true;
+          this.setState({ hasSubmitted: true });
+          notification.success({
+            message: "Sign-Up Success!",
+            description: `Thank you for signing up for Sacshiki. We'll be in touch.`,
+          });
+        } else {
+          notification.error({
+            message: "Email Not Sent",
+            description: `Something went wrong. Please try again`,
+          });
+        }//if status=200
+      })//submitform
     } else {
       notification.warning({
         message: "Invalid Email",
         description: `'${email}' is not a valid email. Please try again`,
       });
-    }
+    }//if validemail
     this.setState({isSubmitting: false, hasSubmitted: success});
   }
 

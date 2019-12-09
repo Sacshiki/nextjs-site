@@ -1,25 +1,16 @@
-const nodemailer = require('nodemailer')
-const sgTransport = require('nodemailer-sendgrid-transport')
+const sgMail = require('@sendgrid/mail') // TODO remove unused mail packages
 
-const transporter = nodemailer.createTransport(sgTransport({
-  auth: {
-    api_key: process.env.SENDGRID_API
+const send = ({email, name, text}) => {
+  sgMail.setApiKey(process.env.SENDGRID_API)
+  let msg = {
+    to: 'wilsonaustin17@gmail.com', // TODO set this as a config or .env variable?
+    from: email,
+    subject: `Sacshiki Sign Up From ${email}`,
+    text: `${email} signed up for Sacshiki`,
+    html: `${email} signed up for Sacshiki`,
   }
-}))
-
-const send = ({ email, name, text }) => {
-  console.log("API KEY: ", process.env.SENDGRIDAPI)
-  const from = name && email ? `${name} <${email}>` : `${name || email}`
-  const message = {
-    from,
-    to: 'wilsonaustin17@gmail.com',
-    subject: `New message from ${from}`,
-    text,
-    replyTo: from
-  }
-
   return new Promise((resolve, reject) => {
-    transporter.sendMail(message, (error, info) =>
+    sgMail.send(msg, (error, info) =>
       error ? reject(error) : resolve(info)
     )
   })

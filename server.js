@@ -1,4 +1,3 @@
-
 const express = require('express')
 const next = require('next')
 const bodyParser = require('body-parser')
@@ -8,7 +7,7 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const mailer = require('./sendgrid-mailer.js')
-console.log(mailer);
+require('dotenv').config() // reads .env from root of project
 
 app.prepare().then(() => {
   const server = express()
@@ -17,7 +16,6 @@ app.prepare().then(() => {
 
   server.post('/api/contact', (req, res) => {
     const { email = '', name = '', message = '' } = req.body
-    console.log(req.body);
 
     mailer.send({ email, name, text: message }).then(() => {
       res.send("OK")
