@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Carousel, Icon } from 'antd';
-const { getImages, strapiUrl } = require('../utils/strapi.js')
+const { getImages } = require('../utils/strapi.js')
 
 class Gallery extends Component {
   constructor (props) {
