@@ -26,7 +26,7 @@ class Card1 extends Component {
     getImages("hp-hero").then((slides) => {
       if (slides.length > 0) {
         this.setState({
-          imageUrl: `${strapiUrl}${slides[0].Image.url}`,
+          imageUrl: slides[0].Image.url,
         });
       }
     });

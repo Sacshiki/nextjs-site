@@ -29,7 +29,7 @@ class Gallery extends Component {
     const images = this.state.slides.map((slide) => {
       return (
         <div className='slidecontainer'>
-          <img className='slide' src={`${strapiUrl}${slide.Image.url}`}/>
+          <img className='slide' src={slide.Image.url}/>
           <style jsx>{`
             .slidecontainer {
               height: 100%;
