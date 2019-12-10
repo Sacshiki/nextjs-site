@@ -8,7 +8,6 @@ import {
 } from 'antd'
 
 class Header extends Component {
-  // TODO make IG clickable
   // TODO hover state IG
   constructor (props) {
     super(props)
@@ -60,17 +59,13 @@ class Header extends Component {
           </Col>
           <Col span={12}>
             <div id='links'>
-              <Row gutter={30}>
-                <Col span={12}>
-                  <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
-                    Contact
-                  </div>
-                </Col>
-                <Col span={4}>
-                  <IgIcon />
-                </Col>
-              </Row>
+              <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
+                Contact
               </div>
+              <div id='iglogo'>
+                <IgIcon />
+              </div>
+            </div>
           </Col>
         </Row>
         {this.renderModal()}
@@ -80,15 +75,18 @@ class Header extends Component {
             position: absolute;
             width: 100%;
             z-index: 50;
+            padding: 10px 20px 0px 20px;
           }
           #logo {
             width: 125.7px;
             height: 56.01px;
           }
           #links {
-            position: absolute;
-            right: 10vw;
-            top: 5vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
           }
           #ig {
             width: 33px;
@@ -97,6 +95,13 @@ class Header extends Component {
           .link {
             font-size: 15px;
             cursor: pointer;
+          }
+          #contact {
+            margin-top: 22px;
+            margin-right: 15px;
+          }
+          #iglogo {
+            margin-top: 17px;
           }
           .link:hover {
             color: #F3D7C6;

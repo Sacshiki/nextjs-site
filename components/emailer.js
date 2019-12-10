@@ -88,8 +88,10 @@ class Emailer extends Component {
             width: 250px;
             height: 45px;
             position: relative;
-            background: ${primaryColor};
             color: ${primaryColor};
+            text-align: center;
+            line-height: 45px;
+            border: 1px solid ${primaryColor};
           }
           #emailer {
             width: 250px;

@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Carousel } from 'antd';
+import { Carousel, Icon } from 'antd';
 const { getImages, strapiUrl } = require('../utils/strapi.js')
 
 class Gallery extends Component {
@@ -13,8 +13,6 @@ class Gallery extends Component {
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
     this.carousel = React.createRef();
-    this.width = this.props.width || '100%';
-    this.height = this.props.height || '100%';
 
     getImages(this.slug).then((slides) => {
       this.setState({slides});
@@ -34,23 +32,29 @@ class Gallery extends Component {
           <img className='slide' src={`${strapiUrl}${slide.Image.url}`}/>
           <style jsx>{`
             .slidecontainer {
-              height: ${this.height};
-              width: ${this.width};
-            }
-            .slide {
               height: 100%;
               width: 100%;
-              object-fit: cover;
+              // position: relative;
+            }
+            .slide {
+              width: 100%;
+              height: auto;
+              object-fit: fill;
+              // position: absolute;
             }
         `}</style>
         </div>
       );
     });
-    console.log(images);
+
     return (
       <div className='carouselcontainer'>
-        <div id='left' className='switcher' onClick={this.prev}>{'<<<<<<'}</div>
-        <div id='right' className='switcher' onClick={this.next}>{'>>>>>>'}</div>
+        <div id='left' className='switcher' onClick={this.prev}>
+          <Icon type="left"/>
+        </div>
+        <div id='right' className='switcher' onClick={this.next}>
+          <Icon type="right"/>
+        </div>
         <Carousel ref={node => (this.carousel = node)} dots={false} className='carousel'>
           { images }
         </Carousel>
@@ -59,6 +63,7 @@ class Gallery extends Component {
             position: relative;
             height: 100%;
             width: 100%;
+            overflow: hidden;
           }
           .carousel {
             height: 100%;
@@ -67,14 +72,18 @@ class Gallery extends Component {
           .switcher {
             position: absolute;
             z-index: 50;
+            font-size: 20px;
+            top: 45%;
+          }
+          .switcher:hover {
+            color: #2A2A2A;
+            font-size: 21px;
           }
           #left {
             left: 5px;
-            top: 50%;
           }
           #right {
             right: 5px;
-            top: 50%;
           }
         `}</style>
       </div>

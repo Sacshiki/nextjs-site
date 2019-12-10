@@ -1,8 +1,10 @@
 import React from 'react'
+import Head from 'next/head';
 import Header from '../components/header.js'
 import Footer from '../components/footer.js'
 import Emailer from '../components/emailer.js'
 import Gallery from '../components/gallery.js'
+import { LargeTopo } from '../components/topography.js'
 import { Component } from 'react'
 const { getImages, strapiUrl } = require('../utils/strapi.js')
 
@@ -36,7 +38,7 @@ class Card1 extends Component {
       <div id='card1' className='card'>
         <img id='model1' src={this.state.imageUrl} alt="model1" />
         <div id='maintext'>
-          <div className='title'>Your Most Useful Pocket</div>
+          <div className='title'>Your most useful pocket</div>
           <div className='subtitle'>An accessory you didn&#8217;t know you needed</div>
           <div className='subtitle'>but will change your life and community</div>
         </div>
@@ -46,6 +48,7 @@ class Card1 extends Component {
           #card1 {
             height: 100vh;
             width: 100vw;
+            background: black;
           }
           #model1 {
             height: 100%;
@@ -53,6 +56,7 @@ class Card1 extends Component {
             overflow: hidden;
             object-fit: cover;
             object-position: 0 26%;
+            opacity: 0.65;
           }
           #maintext {
             position: absolute;
@@ -68,18 +72,17 @@ class Card1 extends Component {
             color: #FDF8F1;
           }
           .title {
-            font-family: sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: normal;
-            font-weight: normal;
             font-size: 40px;
             line-height: 68px;
+            text-align: center;
           }
           .subtitle {
-            font-family: sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 20px;
+            font-weight: 300;
+            font-size: 19px;
             line-height: 30px;
+            text-align: center;
           }
         `}</style>
       </div>
@@ -91,33 +94,61 @@ class Card2 extends Component {
   render () {
     return (
       <div id='card2'>
-        <Row>
-          <Col span={12}>
-            <div id='slide1'>
-              <Gallery slug='hp-test' height='50vw' width='50vw'/>
-            </div>
-          </Col>
-          <Col span={12}>
-            <div id='card2content'>
-              <h1>Functional Fashion</h1>
-              <h3>Sacshiki began as a tool for urban foraging evolved from furoshiki, a japanese cloth folding art form.</h3>
-              <h3>Sign up to learn about this incredibly useful, functional piece of fashion and join us at our next pop-up.</h3>
-              <Emailer dark={false}/>
-            </div>
-          </Col>
-        </Row>
+        <div id='topography'>
+          <LargeTopo/>
+        </div>
+        <div id='row'>
+          <div id='slide1'>
+            <Gallery slug='hp-test' height='80%' width='80%'/>
+          </div>
+          <div id='card2content'>
+            <h1>Functional Fashion</h1>
+            <h3>Sacshiki began as a tool for urban foraging evolved from furoshiki, a japanese cloth folding art form.</h3>
+            <h3>Sign up to learn about this incredibly useful, functional piece of fashion and join us at our next pop-up.</h3>
+            <Emailer dark={false}/>
+          </div>
+        </div>
+
         <style jsx>{`
           #card2 {
-            height: 50vw;
-            width: 100vw;
+            position: relative;
+            width: 100%;
             background: rgba(243, 215, 198, 0.6);
           }
+          #topography {
+            height: 100%;
+            width: 100%;
+            top: 0;
+            position: absolute;
+          }
+          #row {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+            -webkit-column-width: 250px;
+            -moz-column-width: 250px;
+            -webkit-column-gap: 5px;
+            -moz-column-gap: 5px;
+            column-gap: 5px;
+            column-width: 250px;
+            padding: 0px 20px;
+          }
           #slide1 {
-            height: 40vw;
-            width: 40vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin: auto auto;
+          }
+          #slide1:before {
+              content: "";
+              padding-top: 100%; 	/* initial ratio of 1:1*/
           }
           #card2content {
-            color: black;
+            color: #171717;
+            padding: 50px;
+            display: inline-block;
+            z-index: 10;
           }
         `}</style>
       </div>
@@ -145,16 +176,19 @@ class Card3 extends Component {
         </Row>
         <style jsx>{`
           #card3 {
-            height: 50vw;
-            width: 100vw;
+            width: 100%;
             background: white;
           }
           #slide2 {
-            height: 50vw;
-            width: 50vw;
+            height: 100%;
+            width: 100%;
+          }
+          #slide2:before {
+              content: "";
+              padding-top: 100%;
           }
           #card2content {
-            color: black;
+            color: #171717;
           }
         `}</style>
       </div>
@@ -164,6 +198,11 @@ class Card3 extends Component {
 
 export default () => (
   <div>
+    <Head>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+    </Head>
+
     <Header/>
     <Card1/>
     <Card2/>
@@ -172,8 +211,9 @@ export default () => (
 
     <style jsx global>{`
       body {
+        font-family: 'Open Sans', sans-serif;
+        // font-family: 'Montserrat', sans-serif;
         margin: 0px;
-        font: 11px monospace;
         color: #fff;
       }
     `}</style>
