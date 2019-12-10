@@ -99,7 +99,7 @@ class Card2 extends Component {
         </div>
         <div id='row'>
           <div id='slide1'>
-            <Gallery slug='hp-test' height='80%' width='80%'/>
+            <Gallery slug='hp-fashion' height='80%' width='80%'/>
           </div>
           <div id='card2content'>
             <h1>Functional Fashion</h1>
@@ -170,7 +170,7 @@ class Card3 extends Component {
           </Col>
           <Col span={12}>
             <div id='slide2'>
-              <Gallery slug='hp-test' height='50vw' width='50vw'/>
+              <Gallery slug='hp-foraging' height='50vw' width='50vw'/>
             </div>
           </Col>
         </Row>
