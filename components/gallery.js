@@ -9,6 +9,7 @@ class Gallery extends Component {
       slides: [],
     }
     this.slug = props.slug || "hp-default";
+    this.captions = props.captions || false;
 
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
@@ -30,17 +31,24 @@ class Gallery extends Component {
       return (
         <div className='slidecontainer'>
           <img className='slide' src={slide.Image.url}/>
+          { this.captions ? <div className='caption'>{slide.Description}</div> : null }
           <style jsx>{`
             .slidecontainer {
               height: 100%;
               width: 100%;
-              // position: relative;
             }
             .slide {
               width: 100%;
               height: auto;
               object-fit: fill;
-              // position: absolute;
+            }
+            .caption {
+              font-size: 12px;
+              font-style: italic;
+              width: 100%;
+              text-align: center;
+              bottom: -20px;
+              z-index: 50;
             }
         `}</style>
         </div>
@@ -63,7 +71,6 @@ class Gallery extends Component {
             position: relative;
             height: 100%;
             width: 100%;
-            overflow: hidden;
           }
           .carousel {
             height: 100%;

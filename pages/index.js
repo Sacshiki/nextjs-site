@@ -96,7 +96,7 @@ class Card2 extends Component {
       <div id='card2'>
         <div id='row'>
           <div id='slide1'>
-            <Gallery slug='hp-fashion'/>
+            <Gallery slug='hp-fashion' captions={true}/>
           </div>
           <div id='card2content'>
             <h1>Functional Fashion</h1>
