@@ -123,6 +123,8 @@ class Emailer extends Component {
             line-height: 29px;
             cursor: pointer;
             user-select: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
           }
           #emailsubmit:hover {
             background: ${hoverColor};

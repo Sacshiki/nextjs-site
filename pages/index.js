@@ -94,12 +94,9 @@ class Card2 extends Component {
   render () {
     return (
       <div id='card2'>
-        <div id='topography'>
-          <LargeTopo/>
-        </div>
         <div id='row'>
           <div id='slide1'>
-            <Gallery slug='hp-fashion' height='80%' width='80%'/>
+            <Gallery slug='hp-fashion'/>
           </div>
           <div id='card2content'>
             <h1>Functional Fashion</h1>
@@ -111,7 +108,6 @@ class Card2 extends Component {
 
         <style jsx>{`
           #card2 {
-            position: relative;
             width: 100%;
             background: rgba(243, 215, 198, 0.6);
           }
@@ -122,33 +118,54 @@ class Card2 extends Component {
             position: absolute;
           }
           #row {
-            -webkit-column-count: 2;
-            -moz-column-count: 2;
-            column-count: 2;
-            -webkit-column-width: 250px;
-            -moz-column-width: 250px;
-            -webkit-column-gap: 5px;
-            -moz-column-gap: 5px;
-            column-gap: 5px;
-            column-width: 250px;
-            padding: 0px 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
           }
           #slide1 {
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin: auto auto;
+            width: 50vw;
+            min-width: 50vw;
+            height: 50vw;
+            padding: 50px;
+            margin-left: 45px;
+            margin-right: -50px;
           }
-          #slide1:before {
-              content: "";
-              padding-top: 100%; 	/* initial ratio of 1:1*/
+          #card2content h1 {
+            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+          }
+          #card2content h3 {
+            font-size: 14px;
           }
           #card2content {
             color: #171717;
-            padding: 50px;
-            display: inline-block;
-            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            margin-left: -20px;
+            margin-bottom: 0px;
+          }
+
+          @media only screen and (max-width: 650px) {
+            #row {
+              display: flex;
+              flex-direction: column-reverse;
+              justify-content: center;
+            }
+            #slide1 {
+              height: 100vw;
+              width: 100vw;
+              margin-left: 0px;
+              margin-right: 0px;
+              padding: 40px;
+            }
+            #card2content {
+              width: 100vw;
+              height: 70vw;
+              margin-bottom: -35px;
+              margin-left: 0px;
+            }
           }
         `}</style>
       </div>
@@ -160,36 +177,66 @@ class Card3 extends Component {
   render () {
     return (
       <div id='card3'>
-        <Row>
-          <Col span={12}>
-            <div id='card3content'>
-              <h1>Reconnect with nature</h1>
-              <h3>There&#8217;s no better way to connect with nature than directly participating in it. Building foraging locations in urban areas; learning how to plant, care for, and harvest wild edibles. This is what drives Sacshiki forward.</h3>
-              <h3>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</h3>
-            </div>
-          </Col>
-          <Col span={12}>
-            <div id='slide2'>
-              <Gallery slug='hp-foraging' height='50vw' width='50vw'/>
-            </div>
-          </Col>
-        </Row>
+        <div id='row'>
+          <div id='card3content'>
+            <h1>Reconnect with nature</h1>
+            <h3>There&#8217;s no better way to connect with nature than directly participating in it. Building foraging locations in urban areas; learning how to plant, care for, and harvest wild edibles. This is what drives Sacshiki forward.</h3>
+            <h3>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</h3>
+          </div>
+          <div id='slide2'>
+            <Gallery slug='hp-foraging'/>
+          </div>
+        </div>
         <style jsx>{`
           #card3 {
             width: 100%;
             background: white;
+            overflow: hidden;
+          }
+
+          #row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
           }
           #slide2 {
-            height: 100%;
-            width: 100%;
+            width: 50vw;
+            height: 50vw;
           }
-          #slide2:before {
-              content: "";
-              padding-top: 100%;
+          #card3content h1 {
+            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
           }
-          #card2content {
+          #card3content h3 {
+            font-size: 14px;
+          }
+
+          #card3content {
             color: #171717;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
           }
+
+          @media only screen and (max-width: 650px) {
+            #row {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
+            #slide2 {
+              height: 100vw;
+              width: 100vw;
+            }
+            #card3content {
+              width: 100vw;
+              height: 70vw;
+            }
+          }
+
+
         `}</style>
       </div>
     )
@@ -215,6 +262,7 @@ export default () => (
         // font-family: 'Montserrat', sans-serif;
         margin: 0px;
         color: #fff;
+        overflow-x: hidden;
       }
     `}</style>
   </div>

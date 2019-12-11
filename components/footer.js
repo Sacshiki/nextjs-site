@@ -45,31 +45,31 @@ class Footer extends Component {
             height: 200px;
           }
           #footerrow {
+            height: 100%;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            align-items: center;
             justify-content: space-around;
+            padding-bottom: 20px;
           }
           #email {
-            margin-top: 17px;
           }
           #logo {
-            margin: 10px;
             width: 125.7px;
             height: 56.01px;
           }
           #ig {
-            margin-top: 26px;
             width: 33px;
             height: 33px;
           }
           #cc {
-            font-size: 12px;
+            font-size: 10px;
             width: 100%;
             text-align: center;
             color: white;
             position: absolute;
-            bottom: 5px;
+            bottom: 4px;
           }
           #topography {
             height: 100%;
