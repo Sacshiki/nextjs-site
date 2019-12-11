@@ -5,9 +5,11 @@ class Emailer extends Component {
   constructor (props) {
     super(props)
     this.isDark = props.isDark || false;
+    this.showContentInput = props.showContentInput || false;
 
     this.state = {
       email: "",
+      content: null,
       hasSubmitted: false,
       isSubmitting: false,
     }
@@ -39,9 +41,10 @@ class Emailer extends Component {
     let success = false; // if this becomes true, the input changes to a thank you msg
     this.setState({isSubmitting: true});
     let email = this.state.email;
+    let text = this.state.content;
 
     if (this.validateEmail(email)) {
-      this.submitForm({email}).then((res) => {
+      this.submitForm({email, text}).then((res) => {
         if (res.status === 200) {
           success = true;
           this.setState({ hasSubmitted: true });
@@ -79,13 +82,17 @@ class Emailer extends Component {
           </div>
         ) : (
           <div id='emailer'>
+            { this.showContentInput ?
+              <textarea id='contentinput' type='text' value={this.state.content} placeholder='your message' spellCheck='false' onChange={e=>this.setState({content: e.target.value})}/> :
+              null
+            }
             <input type='text' value={this.state.email} placeholder='email address' spellCheck='false' onChange={e=>this.setState({email: e.target.value})}/>
             <div id='emailsubmit' onClick={e => {this.clickSubmit(e)}}>{this.state.isSubmitting ? "..." : "Submit" }</div>
           </div>
         )}
         <style jsx>{`
           #submitted {
-            width: 250px;
+            width: 280px;
             height: 45px;
             position: relative;
             color: ${primaryColor};
@@ -94,27 +101,32 @@ class Emailer extends Component {
             border: 1px solid ${primaryColor};
           }
           #emailer {
-            width: 250px;
-            height: 45px;
+            width: 280px;
+            height: 100%;
             position: relative;
           }
           #emailer input:focus {
             border: 1px solid ${hoverColor};
           }
-          input {
-            height: 100%;
+          input, textarea {
+            height: 45px;
             width: 100%;
             border-width: 0;
             background: none;
             padding-left: 7px;
             outline: none;
             border: 1px solid ${primaryColor};
+            position: relative;
+          }
+          #contentinput {
+            height: 100px;
+            margin-bottom: 7px;
           }
           #emailsubmit {
             position: absolute;
             height: 29px;
             width: 62px;
-            top: 7px;
+            bottom: 7px;
             right: 7px;
             background: ${primaryColor};
             color: ${secondaryColor};

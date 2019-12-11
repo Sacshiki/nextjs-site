@@ -6,7 +6,7 @@ import Emailer from '../components/emailer.js'
 import Gallery from '../components/gallery.js'
 import { LargeTopo } from '../components/topography.js'
 import { Component } from 'react'
-const { getImages, strapiUrl } = require('../utils/strapi.js')
+const { getImages } = require('../utils/strapi.js')
 
 import {
   Row,

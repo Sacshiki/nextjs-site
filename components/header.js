@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { IgIcon, SacshikiLogo } from './logo.js'
+const { getImages } = require('../utils/strapi.js')
 import Emailer from './emailer.js'
 import {
   Row,
@@ -8,12 +9,21 @@ import {
 } from 'antd'
 
 class Header extends Component {
-  // TODO hover state IG
   constructor (props) {
     super(props)
     this.state = {
-      showModal: false,
+      // showModal: false,
+      showModal: true,
+      imageUrl: "/static/images/back_1.jpg",
     }
+
+    getImages("hp-modal").then((slides) => {
+      if (slides.length > 0) {
+        this.setState({
+          imageUrl: slides[0].Image.url,
+        });
+      }
+    });
   }
 
   renderModal () {
@@ -26,22 +36,41 @@ class Header extends Component {
         footer={null}
         width={820}
       >
-        <Row>
-          <Col span={12}>
-            <img id='model1' src="/static/images/back_1.jpg" alt="model1" />
-          </Col>
-          <Col span={12}>
+        <div id='row'>
+          <img id='modalimg' src={this.state.imageUrl} alt="modalimg" />
+          <div id='modalcontent'>
             <h1>Connect With Us</h1>
             <h3>Subscribe for our monthly updates and find out how</h3>
-            <Emailer/>
+            <Emailer showContentInput={true}/>
             <p onClick={()=>this.setState({showModal: false})}>Maybe later, thank you</p>
-          </Col>
-        </Row>
+          </div>
+        </div>
         <style jsx>{`
-          img {
-            height: 100%;
-            width: 100%;
+          #row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+          }
+          #modalcontent {
+            padding: 20px;
+            width: 50%;
+          }
+          #modalimg {
+            width: 410px;
+            max-width: 50%;
+            height: 410px;
+            max-height: 100%;
             object-fit: cover;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+          }
+          p {
+            margin-top: 7px;
+          }
+          p:hover {
+            cursor: pointer;
+            text-decoration: underline;
           }
         `}</style>
       </Modal>
