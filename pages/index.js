@@ -94,6 +94,7 @@ class Card2 extends Component {
   render () {
     return (
       <div id='card2'>
+        <LargeTopo/>
         <div id='row'>
           <div id='slide1'>
             <Gallery slug='hp-fashion' captions={true}/>
@@ -110,12 +111,7 @@ class Card2 extends Component {
           #card2 {
             width: 100%;
             background: rgba(243, 215, 198, 0.6);
-          }
-          #topography {
-            height: 100%;
-            width: 100%;
-            top: 0;
-            position: absolute;
+            position: relative;
           }
           #row {
             display: flex;

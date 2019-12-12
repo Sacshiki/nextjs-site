@@ -9,7 +9,7 @@ class Emailer extends Component {
 
     this.state = {
       email: "",
-      content: null,
+      content: "",
       hasSubmitted: false,
       isSubmitting: false,
     }
@@ -41,10 +41,10 @@ class Emailer extends Component {
     let success = false; // if this becomes true, the input changes to a thank you msg
     this.setState({isSubmitting: true});
     let email = this.state.email;
-    let text = this.state.content;
+    let message = this.state.content;
 
     if (this.validateEmail(email)) {
-      this.submitForm({email, text}).then((res) => {
+      this.submitForm({email, message}).then((res) => {
         if (res.status === 200) {
           success = true;
           this.setState({ hasSubmitted: true });

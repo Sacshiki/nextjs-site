@@ -64,6 +64,7 @@ class Header extends Component {
             object-fit: cover;
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
+            border-top-right-radius: 0px;
           }
           p {
             margin-top: 7px;
@@ -71,6 +72,26 @@ class Header extends Component {
           p:hover {
             cursor: pointer;
             text-decoration: underline;
+          }
+
+          @media only screen and (max-width: 650px) {
+            #row {
+              flex-direction: column;
+            }
+            #modalcontent {
+              padding: 20px;
+              width: 100%;
+              height: 50%
+            }
+            #modalimg {
+              margin-top: 20px;
+              width: 200px;
+              max-width: 100%;
+              height: 200px;
+              max-height: 50%;
+              object-fit: cover;
+              border-radius: 0px;
+            }
           }
         `}</style>
       </Modal>

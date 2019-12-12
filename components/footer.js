@@ -53,15 +53,15 @@ class Footer extends Component {
             justify-content: space-around;
             padding-bottom: 20px;
           }
-          #email {
-          }
           #logo {
             width: 125.7px;
             height: 56.01px;
+            z-index: 101;
           }
           #ig {
             width: 33px;
             height: 33px;
+            z-index: 101;
           }
           #cc {
             font-size: 10px;
