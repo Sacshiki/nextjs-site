@@ -38,9 +38,9 @@ class Card1 extends Component {
       <div id='card1' className='card'>
         <img id='model1' src={this.state.imageUrl} alt="model1" />
         <div id='maintext'>
-          <div className='title'>Your most useful pocket</div>
+          <div className='title'>Your favorite pocket</div>
           <div className='subtitle'>An accessory you didn&#8217;t know you needed</div>
-          <div className='subtitle'>but will change your life and community</div>
+          <div className='subtitle'>but will change your life and your community</div>
         </div>
 
 
@@ -101,13 +101,16 @@ class Card2 extends Component {
           </div>
           <div id='card2content'>
             <h1>Functional Fashion</h1>
-            <h3>Sacshiki began as a tool for urban foraging evolved from furoshiki, a japanese cloth folding art form.</h3>
-            <h3>Sign up to learn about this incredibly useful, functional piece of fashion and join us at our next pop-up.</h3>
+            <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
+            <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up</em></h3>
             <Emailer dark={false}/>
           </div>
         </div>
 
         <style jsx>{`
+          .mb-20 {
+            margin-bottom:20px
+          }
           #card2 {
             width: 100%;
             background: rgba(243, 215, 198, 0.6);
@@ -176,14 +179,17 @@ class Card3 extends Component {
         <div id='row'>
           <div id='card3content'>
             <h1>Reconnect with nature</h1>
-            <h3>There&#8217;s no better way to connect with nature than directly participating in it. Building foraging locations in urban areas; learning how to plant, care for, and harvest wild edibles. This is what drives Sacshiki forward.</h3>
-            <h3>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</h3>
+            <h3 className="mb-20">There&#8217;s no other way to connect with nature than to be a part of it. The Sacshiki team is also building foraging gardens and showing the people in our community how to plant, care for and harvest wild edibles. This is what drives Sacshiki and keeps us moving forward.</h3>
+            <h3><em>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</em></h3>
           </div>
           <div id='slide2'>
             <Gallery slug='hp-foraging'/>
           </div>
         </div>
         <style jsx>{`
+          .mb-20 {
+            margin-bottom:20px
+          }
           #card3 {
             width: 100%;
             background: white;
