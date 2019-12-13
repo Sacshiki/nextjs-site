@@ -159,7 +159,7 @@ class Card2 extends Component {
             }
             #card2content {
               width: 100vw;
-              height: 70vw;
+              height: 100vw;
               margin-bottom: -35px;
               margin-left: 0px;
             }
