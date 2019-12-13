@@ -1,7 +1,7 @@
 const sgMail = require('@sendgrid/mail')
 
 const send = ({email, name, text}) => {
-  sgMail.setApiKey(process.env.sendgrid_api)
+  sgMail.setApiKey(process.env.SENDGRID_API)
   let msgText = text.length > 0 ? text : `${email} signed up for Sacshiki`;
   let msgHtml = msgText;
 
