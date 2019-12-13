@@ -6,8 +6,7 @@ const send = ({email, name, text}) => {
   let msgHtml = msgText;
 
   let msg = {
-    to: 'wilsonaustin17@gmail.com',
-    // to: 'cameron@sacshiki.com',
+    to: 'cameron@sacshiki.com',
     from: email,
     subject: `Sacshiki Sign Up From ${email}`,
     text: msgText,
