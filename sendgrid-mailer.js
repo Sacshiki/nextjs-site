@@ -1,12 +1,13 @@
-const sgMail = require('@sendgrid/mail') // TODO remove unused mail packages
+const sgMail = require('@sendgrid/mail')
 
 const send = ({email, name, text}) => {
-  sgMail.setApiKey(process.env.SENDGRID_API)
+  sgMail.setApiKey(process.env.sendgrid_api)
   let msgText = text.length > 0 ? text : `${email} signed up for Sacshiki`;
   let msgHtml = msgText;
 
   let msg = {
-    to: 'wilsonaustin17@gmail.com', // TODO set this as a config or .env variable?
+    to: 'wilsonaustin17@gmail.com',
+    // to: 'cameron@sacshiki.com',
     from: email,
     subject: `Sacshiki Sign Up From ${email}`,
     text: msgText,

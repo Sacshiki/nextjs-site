@@ -21,7 +21,7 @@ class Card1 extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      imageUrl: "/static/images/back_1.jpg",
+      imageUrl: "/static/images/2a2a2a.png",
     }
     getImages("hp-hero").then((slides) => {
       if (slides.length > 0) {
@@ -32,7 +32,6 @@ class Card1 extends Component {
     });
   }
 
-  // TODO fonts, text spacing
   render () {
     return (
       <div id='card1' className='card'>
@@ -42,7 +41,6 @@ class Card1 extends Component {
           <div className='subtitle'>An accessory you didn&#8217;t know you needed</div>
           <div className='subtitle'>but will change your life and your community</div>
         </div>
-
 
         <style jsx>{`
           #card1 {

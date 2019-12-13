@@ -12,9 +12,8 @@ class Header extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // showModal: false,
-      showModal: true,
-      imageUrl: "/static/images/back_1.jpg",
+      showModal: false,
+      imageUrl: "/static/images/2a2a2a.png",
     }
 
     getImages("hp-modal").then((slides) => {

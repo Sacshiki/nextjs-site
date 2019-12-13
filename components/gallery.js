@@ -63,7 +63,7 @@ class Gallery extends Component {
         <div id='right' className='switcher' onClick={this.next}>
           <Icon type="right"/>
         </div>
-        <Carousel ref={node => (this.carousel = node)} dots={false} className='carousel'>
+        <Carousel ref={node => (this.carousel = node)} dots={false} autoplay={true} className='carousel'>
           { images }
         </Carousel>
         <style jsx>{`
