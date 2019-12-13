@@ -1,0 +1,5 @@
+{
+		"env": {
+				"SENDGRID_API": "@sendgrid_api"
+		}
+}

@@ -6,7 +6,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const mailer = require('./sendgrid-mailer.js')
 require('dotenv').config() // reads .env from root of project
 
 app.prepare().then(() => {
@@ -14,15 +13,8 @@ app.prepare().then(() => {
 
   server.use(bodyParser.json())
 
-  server.post('/api/contact', (req, res) => {
-    const { email = '', name = '', message = '' } = req.body
-
-    mailer.send({ email, name, text: message }).then(() => {
-      res.send("OK")
-    }).catch((error) => {
-      console.log('/api/contact failed', error)
-      res.status(500).json({error: "email could not be sent"})
-    })
+  server.post('*', (req, res) => {
+    return handle(req, res)
   })
 
   server.get('*', (req, res) => {

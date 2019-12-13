@@ -22,7 +22,7 @@ class Emailer extends Component {
   }
 
   submitForm (data) { // returns a Promise
-    return fetch('/api/contact', {
+    return fetch('/api/email', {
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',
