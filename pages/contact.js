@@ -25,7 +25,7 @@ class Contact extends Component {
     })
   }
   render () {
-    const title = 'Contact Page'
+    const title = 'Connect with us'
     return (
       <Layout>
         <Head>

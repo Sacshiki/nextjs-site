@@ -6,10 +6,11 @@ class Gallery extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      slides: [],
+      slides: []
     }
     this.slug = props.slug || "hp-default";
     this.captions = props.captions || false;
+    this.speed = props.speed || 5000
 
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
@@ -27,6 +28,12 @@ class Gallery extends Component {
   }
 
   render () {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplaySpeed: this.speed
+    };
     const images = this.state.slides.map((slide) => {
       return (
         <div className='slidecontainer'>
@@ -63,7 +70,7 @@ class Gallery extends Component {
         <div id='right' className='switcher' onClick={this.next}>
           <Icon type="right"/>
         </div>
-        <Carousel ref={node => (this.carousel = node)} dots={false} autoplay={true} className='carousel'>
+        <Carousel {...settings} ref={node => (this.carousel = node)} dots={false} autoplay={true} className='carousel'>
           { images }
         </Carousel>
         <style jsx>{`

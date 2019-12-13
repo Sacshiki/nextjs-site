@@ -38,10 +38,10 @@ class Header extends Component {
         <div id='row'>
           <img id='modalimg' src={this.state.imageUrl} alt="modalimg" />
           <div id='modalcontent'>
-            <h1>Connect With Us</h1>
-            <h3>Subscribe for our monthly updates and find out how</h3>
+            <h1>Connect with us</h1>
+            <h3>Subscribe for our monthly updates:</h3>
             <Emailer showContentInput={true}/>
-            <p onClick={()=>this.setState({showModal: false})}>Maybe later, thank you</p>
+            <p onClick={()=>this.setState({showModal: false})}>Maybe later, thank you!</p>
           </div>
         </div>
         <style jsx>{`

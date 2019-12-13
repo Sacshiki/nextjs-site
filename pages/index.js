@@ -38,8 +38,8 @@ class Card1 extends Component {
         <img id='model1' src={this.state.imageUrl} alt="model1" />
         <div id='maintext'>
           <div className='title'>Your favorite pocket</div>
-          <div className='subtitle'>An accessory you didn&#8217;t know you needed</div>
-          <div className='subtitle'>but will change your life and your community</div>
+          <div className='subtitle'>An accessory you didn&#8217;t know you needed -</div>
+          <div className='subtitle'>but it will change your life and your community</div>
         </div>
 
         <style jsx>{`
@@ -95,12 +95,12 @@ class Card2 extends Component {
         <LargeTopo/>
         <div id='row'>
           <div id='slide1'>
-            <Gallery slug='hp-fashion' captions={true}/>
+            <Gallery slug='hp-fashion' captions={true} speed={7000} />
           </div>
           <div id='card2content'>
-            <h1>Functional Fashion</h1>
+            <h1>Functional fashion</h1>
             <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
-            <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up</em></h3>
+            <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up:</em></h3>
             <Emailer dark={false}/>
           </div>
         </div>
