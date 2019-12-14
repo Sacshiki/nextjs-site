@@ -177,7 +177,6 @@ class Card2 extends Component {
             }
             #card2content {
               width: 100vw;
-              height: 100vw;
               margin-bottom: -35px;
               margin-left: 0px;
             }
@@ -250,7 +249,6 @@ class Card3 extends Component {
             }
             #card3content {
               width: 100vw;
-              height: 70vw;
             }
           }
 
