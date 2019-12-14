@@ -5,7 +5,7 @@ export default (req, res) => {
   mailer.send({ email, name, text: message }).then(() => {
     res.send("OK")
   }).catch((error) => {
-    console.log('/api/contact failed', error)
+    console.log('/api/email failed', error)
     res.status(500).json({error: "email could not be sent"})
   })
 }

@@ -101,7 +101,7 @@ class Card2 extends Component {
             <h1>Functional fashion</h1>
             <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
             <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up:</em></h3>
-            <Emailer dark={false}/>
+            <Emailer dark={false} isAddContact={true}/>
           </div>
         </div>
 

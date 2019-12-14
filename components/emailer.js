@@ -6,6 +6,7 @@ class Emailer extends Component {
     super(props)
     this.isDark = props.isDark || false;
     this.showContentInput = props.showContentInput || false;
+    this.isAddContact = props.isAddContact || false;
 
     this.state = {
       email: "",
@@ -22,7 +23,8 @@ class Emailer extends Component {
   }
 
   submitForm (data) { // returns a Promise
-    return fetch('/api/email', {
+    let url = this.isAddContact ? '/api/addcontact' : '/api/email'
+    return fetch(url, {
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',

@@ -29,7 +29,7 @@ class Footer extends Component {
             <SacshikiLogo/>
           </div>
           <div id='email'>
-            <Emailer isDark={true}/>
+            <Emailer isDark={true} isAddContact={true}/>
           </div>
           <div id='ig'>
             <IgIcon />
