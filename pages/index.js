@@ -248,6 +248,7 @@ export default () => (
     <Head>
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+      <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
     </Head>
 
     <Header/>
