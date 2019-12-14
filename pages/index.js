@@ -22,11 +22,13 @@ class Card1 extends Component {
     super(props)
     this.state = {
       imageUrl: "/static/images/2a2a2a.png",
+      mobileImageUrl: "/static/images/2a2a2a.png",
     }
     getImages("hp-hero").then((slides) => {
       if (slides.length > 0) {
         this.setState({
           imageUrl: slides[0].Image.url,
+          mobileImageUrl: slides[0].Image_mobile.url,
         });
       }
     });
@@ -35,7 +37,8 @@ class Card1 extends Component {
   render () {
     return (
       <div id='card1' className='card'>
-        <img id='model1' src={this.state.imageUrl} alt="model1" />
+        <img id='model1' className='splash' src={this.state.imageUrl} alt="model1" />
+        <img id='mobilemodel1' className='splash' src={this.state.mobileImageUrl} alt="model1" />
         <div id='maintext'>
           <div className='title'>Your favorite pocket</div>
           <div className='subtitle'>An accessory you didn&#8217;t know you needed -</div>
@@ -48,13 +51,19 @@ class Card1 extends Component {
             width: 100vw;
             background: black;
           }
-          #model1 {
+          .splash {
             height: 100%;
             width: 100%;
             overflow: hidden;
             object-fit: cover;
             object-position: 0 26%;
             opacity: 0.65;
+          }
+          #model1 {
+            display: inline;
+          }
+          #mobilemodel1 {
+            display: none;
           }
           #maintext {
             position: absolute;
@@ -81,6 +90,15 @@ class Card1 extends Component {
             font-size: 19px;
             line-height: 30px;
             text-align: center;
+          }
+
+          @media only screen and (max-width: 650px) {
+            #model1 {
+              display: none;
+            }
+            #mobilemodel1 {
+              display: inline;
+            }
           }
         `}</style>
       </div>
