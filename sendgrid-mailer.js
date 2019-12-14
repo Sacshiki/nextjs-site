@@ -9,7 +9,7 @@ const send = ({email, name, text}) => {
   let msg = {
     to: 'cameron@sacshiki.com',
     from: email,
-    subject: `Sacshiki Sign Up From ${email}`,
+    subject: `Sacshiki Contact From ${email}`,
     text: msgText,
     html: msgHtml,
   }
