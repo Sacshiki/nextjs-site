@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { IgIcon, SacshikiLogo } from './logo.js'
-const { getImages } = require('../utils/strapi.js')
+const { getGallery } = require('../utils/strapi.js')
 import Emailer from './emailer.js'
 import {
   Row,
@@ -16,13 +16,12 @@ class Header extends Component {
       imageUrl: "/static/images/2a2a2a.png",
     }
 
-    getImages("hp-modal").then((slides) => {
-      if (slides.length > 0) {
-        this.setState({
-          imageUrl: slides[0].Image.url,
-        });
+    const gallery = getGallery("hp-modal", props.galleries)
+    if (gallery.slides.length > 0) {
+      this.state = {
+        imageUrl: gallery.slides[0].link,
       }
-    });
+    }
   }
 
   renderModal () {

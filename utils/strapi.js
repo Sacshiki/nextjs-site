@@ -6,40 +6,50 @@ const fetch = require("node-fetch");
   // {
     // Title: "Girl Mini Bag",
     // slug: "girl-mini-bag",
-    // createdAt: "2019-12-03T18:23:32.723Z",
-    // updatedAt: "2019-12-03T18:24:00.542Z",
     // Description: "Easy access to all your most important things",
     // Image: {
-      // _id: "5de6a8241a85b10017771e45",
       // name: "IMG_20191013_164602.jpg",
-      // sha256: "J-lrTiTBwvmN312jHsb1rGAWXY4u3vXTrGfs2C9ivag",
-      // hash: "73a43a844f7b49f687d49986646f6c48",
-      // ext: ".jpg",
-      // mime: "image/jpeg",
-      // size: "83.69",
       // url: "/uploads/73a43a844f7b49f687d49986646f6c48.jpg",
-      // id: "5de6a8241a85b10017771e45"
     // },
     // id: "5de6a8241a85b10017771e44"
   // }...
 // ]
-const getImages = (gallerySlug) => {
-  let strapiUrl = 'https://sacshiki-knowledge.herokuapp.com/galleries';
+const strapiUrl = "https://knowledge.sacshiki.com/";
+
+const getGalleries = () => {
+
+  let strapiUrl = `https://knowledge.sacshiki.com/galleries`;
   return fetch(strapiUrl)
   .then(response=>response.json())
-  .then(data=>{
-    let slides = [];
-    for (let i = 0; i < data.length; i++) {
-      let title = data[i].slug
-      if (title === gallerySlug) {
-        slides = data[i].slides;
-      }
-    };
-    return slides;
+  .then(galleries=>{
+    for (let gallery of galleries) {
+        for (let slide of gallery.slides) {
+          // cdn path allows for caching with CloudFlare
+          slide.link = `https://cdn.sacshiki.com/slide/${slide.Image.name}`
+          if (slide.Image_mobile) {
+            slide.mobileLink = `https://cdn.sacshiki.com/slide/${slide.Image_mobile.name}`
+          }
+        }
+    }
+    return galleries
   })
 }
 
-const strapiUrl = "https://sacshiki-knowledge.herokuapp.com";
+const getGallery = (gallerySlug, galleries) => {
+  // knowledge-subdomain path allows for caching with CloudFlare
+  for (let gallery of galleries) {
+    if (gallery.slug === gallerySlug) {
+      // console.log("returned gallery:  ", gallery)
+      return gallery
+    }
+  }
+  return []
+  ;
 
-exports.getImages = getImages;
-exports.strapiUrl = strapiUrl;
+}
+
+export {
+  getGalleries,
+  getGallery,
+  strapiUrl
+}

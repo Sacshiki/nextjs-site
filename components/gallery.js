@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Carousel, Icon } from 'antd';
-const { getImages } = require('../utils/strapi.js')
+const { getGallery } = require('../utils/strapi.js')
 
 class Gallery extends Component {
   constructor (props) {
@@ -11,14 +11,19 @@ class Gallery extends Component {
     this.slug = props.slug || "hp-default";
     this.captions = props.captions || false;
     this.speed = props.speed || 5000
-
+    this.galleries = props.galleries || []
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
     this.carousel = React.createRef();
-
-    getImages(this.slug).then((slides) => {
-      this.setState({slides});
-    });
+    
+    const gallery = getGallery(this.slug, this.galleries)
+    
+    if (gallery.slides.length) {
+      this.state = {
+        slides: gallery.slides
+      }
+    }
+    
   }
   next() {
     this.carousel.next();
@@ -34,10 +39,11 @@ class Gallery extends Component {
       speed: 500,
       autoplaySpeed: this.speed
     };
+
     const images = this.state.slides.map((slide) => {
       return (
-        <div className='slidecontainer'>
-          <img className='slide' src={slide.Image.url}/>
+        <div className='slidecontainer' key={slide.id}>
+          <img className='slide' src={slide.link}/>
           { this.captions ? <div className='caption'>{slide.Description}</div> : null }
           <style jsx>{`
             .slidecontainer {

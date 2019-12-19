@@ -6,7 +6,7 @@ import Emailer from '../components/emailer.js'
 import Gallery from '../components/gallery.js'
 import { LargeTopo } from '../components/topography.js'
 import { Component } from 'react'
-const { getImages } = require('../utils/strapi.js')
+const { getGalleries, getGallery } = require('../utils/strapi.js')
 
 import {
   Row,
@@ -17,21 +17,22 @@ import {
 } from 'antd';
 import stylesheet from 'antd/dist/antd.min.css'
 
-class Card1 extends Component {
+class HomeHero extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      imageUrl: "/static/images/2a2a2a.png",
+      imageUrl: "https://storage.googleapis.com/cdn.sacshiki.com/slide/sacshiki_hero_rough_1_lite-compressor.jpg",
       mobileImageUrl: "/static/images/2a2a2a.png",
+      slug: "hp-hero"
     }
-    getImages("hp-hero").then((slides) => {
-      if (slides.length > 0) {
-        this.setState({
-          imageUrl: slides[0].Image.url,
-          mobileImageUrl: slides[0].Image_mobile.url,
-        });
+    let gallery = getGallery(this.state.slug, props.galleries)
+    if (gallery.slides.length > 0) {
+      // this one doesnt seem to work
+      this.state = {
+        imageUrl: gallery.slides[0].link,
+        mobileImageUrl: gallery.slides[0].mobileLink
       }
-    });
+    }
   }
 
   render () {
@@ -107,13 +108,17 @@ class Card1 extends Component {
 }
 
 class Card2 extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   render () {
     return (
       <div id='card2'>
         <LargeTopo/>
         <div id='row'>
           <div id='slide1'>
-            <Gallery slug='hp-fashion' captions={true} speed={7000} />
+            <Gallery slug='hp-fashion' captions={true} speed={7000} {...this.props}/>
           </div>
           <div id='card2content'>
             <h1>Functional fashion</h1>
@@ -188,6 +193,10 @@ class Card2 extends Component {
 }
 
 class Card3 extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   render () {
     return (
       <div id='card3'>
@@ -198,7 +207,7 @@ class Card3 extends Component {
             <h3><em>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</em></h3>
           </div>
           <div id='slide2'>
-            <Gallery slug='hp-foraging'/>
+            <Gallery slug='hp-foraging' {...this.props}/>
           </div>
         </div>
         <style jsx>{`
@@ -259,18 +268,20 @@ class Card3 extends Component {
   }
 }
 
-export default () => (
-  <div>
+function Index({ galleries }) {
+  return <>
+
     <Head>
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
       <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
+      <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
 
-    <Header/>
-    <Card1/>
-    <Card2/>
-    <Card3/>
+    <Header galleries={galleries}/>
+    <HomeHero galleries={galleries}/>
+    <Card2 galleries={galleries}/>
+    <Card3 galleries={galleries}/>
     <Footer/>
 
     <style jsx global>{`
@@ -282,6 +293,12 @@ export default () => (
         overflow-x: hidden;
       }
     `}</style>
-  </div>
-)
+  </>;
+}
 
+Index.getInitialProps = async () => {
+  const galleries = await getGalleries();
+  return { galleries };
+};
+
+export default Index;
