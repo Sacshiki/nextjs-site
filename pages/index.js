@@ -57,7 +57,7 @@ class HomeHero extends Component {
             width: 100%;
             overflow: hidden;
             object-fit: cover;
-            object-position: 0 26%;
+            object-position: center top;
             opacity: 0.65;
           }
           #model1 {
@@ -82,23 +82,32 @@ class HomeHero extends Component {
           .title {
             font-family: 'Montserrat', sans-serif;
             font-style: normal;
-            font-size: 40px;
+            font-size: 50px;
             line-height: 68px;
             text-align: center;
           }
           .subtitle {
             font-weight: 300;
-            font-size: 19px;
+            font-size: 25px;
             line-height: 30px;
             text-align: center;
           }
 
-          @media only screen and (max-width: 650px) {
+          @media only screen and (max-width: 850px) {
             #model1 {
               display: none;
             }
             #mobilemodel1 {
               display: inline;
+            }
+          }
+
+          @media only screen and (max-width: 650px) {
+            .title {
+              font-size: 40px;
+            }
+            .subtitle {
+              font-size: 19px;
             }
           }
         `}</style>
@@ -123,9 +132,15 @@ class Card2 extends Component {
           <div id='card2content'>
             <h1>Functional fashion</h1>
             <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
-            <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up:</em></h3>
-            <Emailer dark={false} isAddContact={true}/>
+            <div id='maincta'>
+              <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be indispensable piece of fashion and join us at our next pop-up:</em></h3>
+              <Emailer dark={false} isAddContact={true}/>
+            </div>
           </div>
+        </div>
+        <div id='secondarycta'>
+          <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up:</em></h3>
+          <Emailer dark={false} isAddContact={true}/>
         </div>
 
         <style jsx>{`
@@ -147,7 +162,7 @@ class Card2 extends Component {
             min-width: 50vw;
             height: 50vw;
             padding: 50px;
-            margin-left: 45px;
+            margin-left: 40px;
             margin-right: -50px;
           }
           #card2content h1 {
@@ -163,8 +178,31 @@ class Card2 extends Component {
             flex-direction: column;
             justify-content: center;
             padding: 40px;
+            padding-right: 90px;
             margin-left: -20px;
             margin-bottom: 0px;
+          }
+          #maincta {
+            display: inline;
+          }
+          #secondarycta {
+            display: none;
+          }
+
+          @media only screen and (max-width: 750px) {
+            #secondarycta {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              padding: 0px 90px 40px 90px;
+              font-size: 13px;
+              color: #171717;
+            }
+            #maincta {
+              display: none;
+            }
           }
 
           @media only screen and (max-width: 650px) {
@@ -184,6 +222,13 @@ class Card2 extends Component {
               width: 100vw;
               margin-bottom: -35px;
               margin-left: 0px;
+              padding-right: 40px;
+            }
+            #secondarycta {
+              display: none;
+            }
+            #maincta {
+              display: inline;
             }
           }
         `}</style>
@@ -243,7 +288,8 @@ class Card3 extends Component {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 40px;
+            padding: 15px;
+            padding-left: 90px;
           }
 
           @media only screen and (max-width: 650px) {
@@ -258,6 +304,7 @@ class Card3 extends Component {
             }
             #card3content {
               width: 100vw;
+              padding-left: 40px;
             }
           }
 

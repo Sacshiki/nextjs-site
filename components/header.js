@@ -63,6 +63,7 @@ class Header extends Component {
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
             border-top-right-radius: 0px;
+            display: inline;
           }
           p {
             margin-top: 7px;
@@ -82,13 +83,7 @@ class Header extends Component {
               height: 50%
             }
             #modalimg {
-              margin-top: 20px;
-              width: 200px;
-              max-width: 100%;
-              height: 200px;
-              max-height: 50%;
-              object-fit: cover;
-              border-radius: 0px;
+              display: none;
             }
           }
         `}</style>
@@ -123,7 +118,7 @@ class Header extends Component {
             position: absolute;
             width: 100%;
             z-index: 50;
-            padding: 10px 20px 0px 20px;
+            padding: 10px 90px 0px 90px;
           }
           #logo {
             width: 125.7px;
@@ -149,10 +144,16 @@ class Header extends Component {
             margin-right: 15px;
           }
           #iglogo {
-            margin-top: 17px;
+            margin-top: 25px;
           }
           .link:hover {
             color: #F3D7C6;
+          }
+
+          @media only screen and (max-width: 650px) {
+            #header {
+              padding: 10px 20px 0px 20px;
+            }
           }
         `}</style>
       </div>

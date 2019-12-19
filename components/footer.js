@@ -22,7 +22,7 @@ class Footer extends Component {
     return (
       <div id='footer'>
         <div id='topography'>
-          <LargeTopo/>
+          <LargeTopo opacity={0.1}/>
         </div>
         <div id='footerrow'>
           <div id='logo'>
@@ -32,7 +32,7 @@ class Footer extends Component {
             <Emailer isDark={true} isAddContact={true}/>
           </div>
           <div id='ig'>
-            <IgIcon />
+            <IgIcon width={"23px"} height={"24px"}/>
           </div>
         </div>
         <h3 id='cc'>2019 © Sacshiki. All rights reserved</h3>
@@ -50,8 +50,9 @@ class Footer extends Component {
             flex-direction: row;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             padding-bottom: 20px;
+            padding: 0px 90px;
           }
           #logo {
             width: 125.7px;
@@ -61,6 +62,7 @@ class Footer extends Component {
           #ig {
             width: 33px;
             height: 33px;
+            margin-top: 11px;
             z-index: 101;
           }
           #cc {
@@ -77,6 +79,19 @@ class Footer extends Component {
             top: 0;
             position: absolute;
             overflow: hidden;
+          }
+
+          @media only screen and (max-width: 650px) {
+            #footerrow {
+              padding-top: 20px;
+              padding-bottom: 20px;
+              height: 100%;
+              align-items: center;
+              justify-content: space-around;
+            }
+            #ig {
+              margin-left: 20px;
+            }
           }
         `}</style>
       </div>
