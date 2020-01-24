@@ -2,14 +2,6 @@ import { Component } from 'react'
 import { LargeTopo } from './topography.js'
 import { IgIcon, SacshikiLogo } from './logo.js'
 
-import {
-  Row,
-  Col,
-  Layout,
-  Carousel,
-  Button,
-} from 'antd';
-
 import Emailer from './emailer.js'
 
 class Footer extends Component {
@@ -42,10 +34,14 @@ class Footer extends Component {
             position: relative;
             background: #171717;
             width: 100%;
-            height: 200px;
+            min-height: 200px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
           }
           #footerrow {
             height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;

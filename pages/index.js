@@ -6,7 +6,7 @@ import Emailer from '../components/emailer.js'
 import Gallery from '../components/gallery.js'
 import { LargeTopo } from '../components/topography.js'
 import { Component } from 'react'
-const { getGalleries, getGallery } = require('../utils/strapi.js')
+const { getGalleries, getGallery, getArticles } = require('../utils/strapi.js')
 
 import {
   Row,
@@ -25,6 +25,7 @@ class HomeHero extends Component {
       mobileImageUrl: "/static/images/2a2a2a.png",
       slug: "hp-hero"
     }
+
     let gallery = getGallery(this.state.slug, props.galleries)
     if (gallery.slides.length > 0) {
       // this one doesnt seem to work
@@ -315,7 +316,7 @@ class Card3 extends Component {
   }
 }
 
-function Index({ galleries }) {
+function Index({ galleries, articles }) {
   return <>
 
     <Head>
@@ -325,7 +326,7 @@ function Index({ galleries }) {
       <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
 
-    <Header galleries={galleries}/>
+    <Header galleries={galleries} articles={articles}/>
     <HomeHero galleries={galleries}/>
     <Card2 galleries={galleries}/>
     <Card3 galleries={galleries}/>
@@ -345,7 +346,8 @@ function Index({ galleries }) {
 
 Index.getInitialProps = async () => {
   const galleries = await getGalleries();
-  return { galleries };
+  const articles = await getArticles();
+  return { galleries, articles };
 };
 
 export default Index;

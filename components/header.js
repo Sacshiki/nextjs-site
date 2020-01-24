@@ -2,25 +2,36 @@ import { Component } from 'react'
 import { IgIcon, SacshikiLogo } from './logo.js'
 const { getGallery } = require('../utils/strapi.js')
 import Emailer from './emailer.js'
+import Link from "next/link";
 import {
-  Row,
-  Col,
+  Dropdown,
+  Menu,
   Modal,
+  Icon,
 } from 'antd'
 
 class Header extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
       showModal: false,
       imageUrl: "/static/images/2a2a2a.png",
+      articles: this.props.articles,
+      disabledArticleId: this.props.disabledArticleId,
     }
 
     const gallery = getGallery("hp-modal", props.galleries)
     if (gallery.slides.length > 0) {
-      this.state = {
+      this.setState({
         imageUrl: gallery.slides[0].link,
-      }
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabledArticleId !== this.state.disabledArticleId) {
+      this.setState({ disabledArticleId: nextProps.disabledArticleId });
     }
   }
 
@@ -92,33 +103,77 @@ class Header extends Component {
   }
 
   render () {
+    const menu = (
+      <Menu>
+        {this.state.articles.map((article, i) => {
+          let className = (article.id == this.state.disabledArticleId) ? "link disabled" : "link";
+          return (
+            <div>
+              <div className={className}>
+                <Link href={{ pathname: "article", query: { id: article.id } }}>
+                  <div> {article.title} </div>
+                </Link>
+              </div>
+
+              <style jsx>{`
+                .link {
+                  width: 250px;
+                  height: 25px;
+                  text-align: center;
+                  color: #171717;
+                  cursor: pointer;
+                }
+                .link:hover {
+                  background: #2A2A2A;
+                  color: white;
+                  transition: 0.3s;
+                }
+                .disabled {
+                  background: #2A2A2A;
+                  pointer-events:none;
+                  color: white;
+                }
+              `}</style>
+            </div>
+          );
+        })}
+      </Menu>
+    );
+
     return (
       <div id='header'>
-        <Row>
-          <Col span={12}>
-            <div id='logo'>
-              <SacshikiLogo/>
+        <div id='row'>
+          <div id='logo'>
+            <SacshikiLogo/>
+          </div>
+          <div id='links'>
+            <Dropdown overlay={menu} placement={"bottomCenter"}>
+              <div className="link"> Articles </div>
+            </Dropdown>
+            <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
+              Contact
             </div>
-          </Col>
-          <Col span={12}>
-            <div id='links'>
-              <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
-                Contact
-              </div>
-              <div id='iglogo'>
-                <IgIcon />
-              </div>
+            <div id='iglogo'>
+              <IgIcon />
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
         {this.renderModal()}
 
         <style jsx>{`
           #header {
+            box-sizing: border-box;
             position: absolute;
-            width: 100%;
+            width: 100vw;
+            height: 66px;
             z-index: 50;
             padding: 10px 90px 0px 90px;
+          }
+          #row {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
           }
           #logo {
             width: 125.7px;
@@ -128,23 +183,23 @@ class Header extends Component {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
+            align-items: center;
             padding-right: 10px;
             color: white;
-          }
-          #ig {
-            width: 33px;
-            height: 33px;
           }
           .link {
             font-size: 15px;
             cursor: pointer;
+            padding-left: 10px;
           }
           #contact {
-            margin-top: 22px;
+            // margin-top: 22px;
             margin-right: 15px;
           }
           #iglogo {
-            margin-top: 25px;
+            height: 22px;
+            width: 16px;
+            margin-top: 4px;
           }
           .link:hover {
             color: #F3D7C6;

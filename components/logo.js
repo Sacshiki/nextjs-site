@@ -46,7 +46,7 @@ class IgIcon extends Component {
     return (
       <a href='https://www.instagram.com/sacshiki' className='link'>
         <svg width={this.width} height={this.height} viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <g id="home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="home" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <g id="Nippy" transform="translate(-1249.000000, -3638.000000)" fill="#FFFFFF">
                   <g id="Footer" transform="translate(0.000000, 3544.000000)">
                       <g id="soc" transform="translate(1133.000000, 94.000000)">

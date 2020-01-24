@@ -48,7 +48,22 @@ const getGallery = (gallerySlug, galleries) => {
 
 }
 
+const getArticles = () => {
+  let strapiUrl = `https://knowledge.sacshiki.com/articles`;
+  // NOTE @cameron, maybe change the images to a cdn url?
+  return fetch(strapiUrl)
+    .then(response=>response.json())
+}
+
+const getArticle = (id) => {
+  let strapiUrl = `https://knowledge.sacshiki.com/articles/`;
+  return fetch(`${strapiUrl}${id}`)
+    .then(response=>response.json())
+}
+
 export {
+  getArticles,
+  getArticle,
   getGalleries,
   getGallery,
   strapiUrl
