@@ -13,6 +13,7 @@ import {
 class Header extends Component {
   constructor (props) {
     super(props)
+    // console.log("articles:",this.props.articles)
 
     this.state = {
       showModal: false,
@@ -110,7 +111,7 @@ class Header extends Component {
           return (
             <div>
               <div className={className}>
-                <Link href={{ pathname: "article", query: { id: article.id } }}>
+                <Link href={{ pathname: "article", query: { slug: article.slug } }}>
                   <div> {article.title} </div>
                 </Link>
               </div>

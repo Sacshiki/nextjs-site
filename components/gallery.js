@@ -15,8 +15,14 @@ class Gallery extends Component {
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
     this.carousel = React.createRef();
-    
-    const gallery = getGallery(this.slug, this.galleries)
+    let gallery
+    if (props.gallery) {
+      gallery = props.gallery
+    } else {
+      gallery = getGallery(this.slug, this.galleries)
+
+    }
+    if (!gallery) {return}
     
     if (gallery.slides.length) {
       this.state = {

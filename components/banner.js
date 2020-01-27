@@ -12,7 +12,7 @@ class Banner extends Component {
     return (
       <div id='banner'>
         <Carousel id='carousel' autoplay>
-          {images.map((image, i) => {
+          {images && images.map((image, i) => {
             return <img className='bannerImg' src={image.url || image.link} key={`image__${image.id}`} />;
           })}
         </Carousel>

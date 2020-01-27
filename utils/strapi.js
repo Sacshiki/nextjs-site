@@ -55,9 +55,9 @@ const getArticles = () => {
     .then(response=>response.json())
 }
 
-const getArticle = (id) => {
+const getArticle = (slug) => {
   let strapiUrl = `https://knowledge.sacshiki.com/articles/`;
-  return fetch(`${strapiUrl}${id}`)
+  return fetch(`${strapiUrl}${slug}`)
     .then(response=>response.json())
 }
 

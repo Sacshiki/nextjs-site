@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Header from '../components/header.js'
 import Footer from '../components/footer.js'
 import Banner from '../components/banner.js'
+import Gallery from '../components/gallery.js'
 
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
@@ -22,13 +23,16 @@ function Article({ article, articles, galleries }) {
 
     <div>
       <Banner images={article.media} text={article.title}/>
+      {/* {article.galleries && article.galleries.length > 0 ? 
+        <div id='slide1'>
+          <Gallery gallery={article.galleries[0]} slug={article.galleries[0].slug} captions={true} speed={7000} />
+        </div>
+        : ''
+      }  */}
 
       <div className="section">
         <div className="textContainer">
           <ReactMarkdown source={article.content} />
-          <p>
-            <Moment format="MMM Do YYYY">{article.published_at}</Moment>
-          </p>
         </div>
       </div>
     </div>
@@ -52,12 +56,47 @@ function Article({ article, articles, galleries }) {
           padding: 20px;
         }
       }
+      .mb-20 {
+        margin-bottom:20px
+      }
+      #card2 {
+        width: 100%;
+        background: rgba(243, 215, 198, 0.6);
+        position: relative;
+      }
+      #row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      #slide1 {
+        width: 50vw;
+        min-width: 50vw;
+        height: 50vw;
+        padding: 50px;
+        margin-left: 40px;
+        margin-right: -50px;
+      }
+      @media only screen and (max-width: 650px) {
+        #row {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: center;
+        }
+        #slide1 {
+          height: 100vw;
+          width: 100vw;
+          margin-left: 0px;
+          margin-right: 0px;
+          padding: 40px;
+        }
+      }
     `}</style>
   </>;
 }
 
 Article.getInitialProps = async (router) => {
-  const article = await getArticle(router.query.id);
+  const article = await getArticle(router.query.slug);
   const articles = await getArticles();
   const galleries = await getGalleries();
   return { article, articles, galleries };
