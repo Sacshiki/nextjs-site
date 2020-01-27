@@ -13,7 +13,7 @@ const Card = ({ article }) => {
   let imageUrl = article.media[0] ? article.media[0].url : null;
   return (
     <div id='card'>
-      <Link href={{ pathname: "article", query: { id: article.id } }}>
+      <Link href={{ pathname: "article", query: { id: article.slug } }}>
         <a>
           <div className="card">
             <div className="cardImg">
@@ -65,7 +65,7 @@ function Articles({ articles, galleries, images }) {
 
     <div id='articleList'>
       {articles.map((article, i) => {
-        return <Card article={article} key={`article__${article.id}`} />;
+        return <Card article={article} key={`article__${article.slug}`} />;
       })}
     </div>
 

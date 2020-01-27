@@ -18,7 +18,7 @@ class Header extends Component {
       showModal: false,
       imageUrl: "/static/images/2a2a2a.png",
       articles: this.props.articles,
-      disabledArticleId: this.props.disabledArticleId,
+      disabledArticleSlug: this.props.disabledArticleSlug,
     }
 
     const gallery = getGallery("hp-modal", props.galleries)
@@ -30,8 +30,8 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.disabledArticleId !== this.state.disabledArticleId) {
-      this.setState({ disabledArticleId: nextProps.disabledArticleId });
+    if (nextProps.disabledArticleSlug !== this.state.disabledArticleSlug) {
+      this.setState({ disabledArticleSlug: nextProps.disabledArticleSlug });
     }
   }
 
@@ -106,11 +106,11 @@ class Header extends Component {
     const menu = (
       <Menu>
         {this.state.articles.map((article, i) => {
-          let className = (article.id == this.state.disabledArticleId) ? "link disabled" : "link";
+          let className = (article.slug == this.state.disabledArticleSlug) ? "link disabled" : "link";
           return (
             <div>
               <div className={className}>
-                <Link href={{ pathname: "article", query: { id: article.id } }}>
+                <Link href={{ pathname: "article", query: { slug: article.slug } }}>
                   <div> {article.title} </div>
                 </Link>
               </div>
@@ -147,7 +147,7 @@ class Header extends Component {
             <SacshikiLogo/>
           </div>
           <div id='links'>
-            <Dropdown overlay={menu} placement={"bottomCenter"}>
+            <Dropdown overlay={menu} placement={"bottomLeft"}>
               <div className="link"> Articles </div>
             </Dropdown>
             <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
@@ -190,7 +190,7 @@ class Header extends Component {
           .link {
             font-size: 15px;
             cursor: pointer;
-            padding-left: 10px;
+            padding-left: 15px;
           }
           #contact {
             // margin-top: 22px;

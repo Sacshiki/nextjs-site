@@ -18,7 +18,7 @@ function Article({ article, articles, galleries }) {
       <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
       <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
-    <Header galleries={galleries} articles={articles} disabledArticleId={article.id}/>
+    <Header galleries={galleries} articles={articles} disabledArticleSlug={article.slug}/>
 
     <div>
       <Banner images={article.media} text={article.title}/>
@@ -57,8 +57,8 @@ function Article({ article, articles, galleries }) {
 }
 
 Article.getInitialProps = async (router) => {
-  const article = await getArticle(router.query.id);
   const articles = await getArticles();
+  const article = getArticle(router.query.slug, articles);
   const galleries = await getGalleries();
   return { article, articles, galleries };
 };

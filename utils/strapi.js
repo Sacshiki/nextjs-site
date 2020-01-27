@@ -55,11 +55,15 @@ const getArticles = () => {
     .then(response=>response.json())
 }
 
-const getArticle = (id) => {
-  let strapiUrl = `https://knowledge.sacshiki.com/articles/`;
-  return fetch(`${strapiUrl}${id}`)
-    .then(response=>response.json())
+const getArticle = (articleSlug, articles) => {
+  for (let article of articles) {
+    if (article.slug === articleSlug) {
+      return article
+    }
+  }
+  return [];
 }
+
 
 export {
   getArticles,
