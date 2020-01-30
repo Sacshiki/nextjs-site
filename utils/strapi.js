@@ -1,19 +1,5 @@
 const fetch = require("node-fetch");
 
-// getImages returns an array of JSON slide objects as a promise
-// example return:
-// [
-  // {
-    // Title: "Girl Mini Bag",
-    // slug: "girl-mini-bag",
-    // Description: "Easy access to all your most important things",
-    // Image: {
-      // name: "IMG_20191013_164602.jpg",
-      // url: "/uploads/73a43a844f7b49f687d49986646f6c48.jpg",
-    // },
-    // id: "5de6a8241a85b10017771e44"
-  // }...
-// ]
 const strapiUrl = "https://knowledge.sacshiki.com/";
 
 const getGalleries = () => {
