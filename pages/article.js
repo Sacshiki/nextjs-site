@@ -31,9 +31,9 @@ function Article({ article, articles, galleries }) {
       }  */}
 
       <div className="section">
-        <div className="textContainer">
+        <article>
           <ReactMarkdown source={article.content} />
-        </div>
+        </article>
       </div>
     </div>
 

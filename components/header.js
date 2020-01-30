@@ -111,7 +111,7 @@ class Header extends Component {
           return (
             <div>
               <div className={className}>
-                <Link href={{ pathname: `articles/${article.slug}` }}>
+                <Link href={{ pathname: `/articles/${article.slug}` }}>
                   <div> {article.title} </div>
                 </Link>
               </div>

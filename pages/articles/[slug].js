@@ -6,9 +6,24 @@ import Footer from '../../components/footer.js'
 import Banner from '../../components/banner.js'
 // import Gallery from '../../components/gallery.js'
 
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
+import ReactHtmlParser from 'react-html-parser'; 
+
 import Moment from "react-moment";
 import stylesheet from 'antd/dist/antd.min.css'
+
+function flatten(text, child) {
+    return typeof child === 'string'
+      ? text + child
+      : React.Children.toArray(child.props.children).reduce(flatten, text)
+  }
+  
+function HeadingRenderer(props) {
+    var children = React.Children.toArray(props.children)
+    var text = children.reduce(flatten, '')
+    var slug = text.toLowerCase().replace(/\W/g, '-')
+    return React.createElement('h' + props.level, {id: slug}, props.children)
+}
 
 function Article({ article, articles, galleries }) {
 
@@ -33,9 +48,9 @@ function Article({ article, articles, galleries }) {
       }  */}
 
       <div className="section">
-        <div className="textContainer">
-          <ReactMarkdown source={article.content} />
-        </div>
+        <article>
+        { ReactHtmlParser (article.content) }
+        </article>
       </div>
     </div>
 
@@ -52,6 +67,106 @@ function Article({ article, articles, galleries }) {
       .textContainer {
         padding: 40px 90px 40px 90px;
       }
+      article > * {
+        min-width: 0;
+    }
+    
+    article > h1 {
+        font-family: Lucida Grande;
+    }
+    
+    article > p {    
+        --x-height-multiplier: 0.375;
+        --baseline-multiplier: 0.17;
+        font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+        letter-spacing: .01rem;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 21px;
+        line-height: 1.58;
+        letter-spacing: -.003em;
+        color: rgba(0,0,0,.84);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    article > .aside {
+        font-family: Lucida Grande;
+        margin: 30px 20px;
+        color: #666;
+        font-size: 0.8em;
+    }
+    
+    img {
+        width: 100%;
+    }
+    
+    .line-numbers a {
+        text-decoration: none;
+        color: #000;
+        padding-right: 1em;
+    }
+    
+    code {
+        background: #eee;
+        padding: 2px 5px;
+    }
+    
+    pre {
+        background: #eee;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+    
+    pre > code {
+        padding: 0;
+    }
+    
+    figure {
+        margin: 0;
+    }
+    
+    figure figcaption {
+        color: #666;
+        font-style: italic;
+        font-size: 0.8em;
+    }
+      article {
+            display: grid;
+            /* I'm using 440px instead of 740px as it makes it easier to view it in the Scrimba simulator additive-symbols: */
+            grid-template-columns: 1fr 1fr 10px 440px 10px 1fr 1fr;
+        }
+        
+        article > * {
+            grid-column: 4;
+        }
+        
+        article > figure {
+            grid-column: 1 / -1;
+            margin: 20px 0;
+        }
+        
+        article > .aside {
+            grid-column: 5 / -1;
+        }
+        
+        article > blockquote {
+            grid-column: 3 / span 2;
+            margin: 0px 0;
+            color: #666;
+            border-left: 3px solid black;
+            padding-left: 10px;
+        }
+        
+        /* General styling */
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+        
+    
 
       @media only screen and (max-width: 650px) {
         .textContainer {
