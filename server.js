@@ -14,6 +14,8 @@ app.prepare().then(() => {
   server.use(bodyParser.json())
 
   server.post('*', (req, res) => {
+    console.log("POST-------------------------------");
+    console.log(req,res);
     return handle(req, res)
   })
 

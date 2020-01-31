@@ -9,18 +9,21 @@ import {
   Modal,
   Icon,
 } from 'antd'
+import customstyle from '../static/custom.css'
 
 class Header extends Component {
   constructor (props) {
     super(props)
-    // console.log("articles:",this.props.articles)
 
     this.state = {
       showModal: false,
       imageUrl: "/static/images/2a2a2a.png",
       articles: this.props.articles,
       disabledArticleSlug: this.props.disabledArticleSlug,
+      showArticles: false,
     }
+    this.ref = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
 
     const gallery = getGallery("hp-modal", props.galleries)
     if (gallery.slides.length > 0) {
@@ -30,10 +33,79 @@ class Header extends Component {
     }
   }
 
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.ref && !this.ref.current.contains(event.target)) {
+      this.setState({showArticles: false});
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.disabledArticleSlug !== this.state.disabledArticleSlug) {
       this.setState({ disabledArticleSlug: nextProps.disabledArticleSlug });
     }
+  }
+
+    componentDidMount() {
+      document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+  renderMenu() {
+    return (
+      <div id='menu'>
+        {this.state.articles.map((article, i) => {
+          let className = (article.slug == this.state.disabledArticleSlug) ? "link disabled" : "link";
+          return (
+            <div className="menuItem">
+              <div className={className}>
+                <Link href={{ pathname: `/articles/${article.slug}` }}>
+                  <div> {article.title} </div>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+
+        <style jsx>{`
+          #menu {
+            border: 1px solid #171717;
+            background: white;
+            position: absolute;
+            right: 0px;
+            top: 55px;
+            border-radius: 3px;
+          }
+          .link {
+            width: 250px;
+            height: 50px;
+            padding-left: 8px;
+            color: #171717;
+            cursor: pointer;
+            line-height: 50px;
+          }
+          .link:hover {
+            background: #2A2A2A;
+            color: white;
+            transition: 0.3s;
+          }
+          .menuItem:not(:first-child) {
+            border-top: 1px solid #171717;
+          }
+          .disabled {
+            background: #2A2A2A;
+            pointer-events:none;
+            color: white;
+          }
+        `}</style>
+      </div>
+    );
   }
 
   renderModal () {
@@ -104,55 +176,20 @@ class Header extends Component {
   }
 
   render () {
-    const menu = (
-      <Menu>
-        {this.state.articles.map((article, i) => {
-          let className = (article.slug == this.state.disabledArticleSlug) ? "link disabled" : "link";
-          return (
-            <div>
-              <div className={className}>
-                <Link href={{ pathname: `/articles/${article.slug}` }}>
-                  <div> {article.title} </div>
-                </Link>
-              </div>
-
-              <style jsx>{`
-                .link {
-                  width: 250px;
-                  height: 25px;
-                  text-align: center;
-                  color: #171717;
-                  cursor: pointer;
-                }
-                .link:hover {
-                  background: #2A2A2A;
-                  color: white;
-                  transition: 0.3s;
-                }
-                .disabled {
-                  background: #2A2A2A;
-                  pointer-events:none;
-                  color: white;
-                }
-              `}</style>
-            </div>
-          );
-        })}
-      </Menu>
-    );
-
     return (
-      <div id='header'>
+      <div id='header' ref={this.ref}>
         <div id='row'>
           <div id='logo'>
             <SacshikiLogo/>
           </div>
           <div id='links'>
-            <Dropdown overlay={menu} placement={"bottomLeft"}>
-              <div className="link"> Articles </div>
-            </Dropdown>
             <div id='contact' className='link' onClick={()=>this.setState({showModal: true})}>
               Contact
+            </div>
+            <div id='articles'
+                 className={"link" + (this.state.showArticles ? " selected" : "")}
+                 onClick={()=>this.setState({showArticles: !this.state.showArticles})}>
+              Articles
             </div>
             <div id='iglogo'>
               <IgIcon />
@@ -160,6 +197,8 @@ class Header extends Component {
           </div>
         </div>
         {this.renderModal()}
+        { this.state.showArticles ?
+          this.renderMenu() : null }
 
         <style jsx>{`
           #header {
@@ -191,19 +230,30 @@ class Header extends Component {
           .link {
             font-size: 15px;
             cursor: pointer;
-            padding-left: 15px;
+            padding: 7px;
           }
-          #contact {
-            // margin-top: 22px;
+          .link:hover {
+            color: #F3D7C6;
+          }
+          .selected {
+            background: white;
+            color: #171717;
+            border: 1px solid #171717;
+            border-radius: 3px;
+            padding: 6px;
+          }
+          .selected:hover {
+            background: #171717;
+            color: white;
+            border: 1px solid white;
+          }
+          #articles {
             margin-right: 15px;
           }
           #iglogo {
             height: 22px;
             width: 16px;
             margin-top: 4px;
-          }
-          .link:hover {
-            color: #F3D7C6;
           }
 
           @media only screen and (max-width: 650px) {

@@ -5,7 +5,7 @@ import Banner from '../components/banner.js'
 import Footer from '../components/footer.js'
 const { getGalleries, getGallery, getArticles } = require('../utils/strapi.js')
 
-import { Form, Input, Select, Button, Radio } from 'antd';
+import { Form, Input, Select, Button, Radio, Checkbox, notification } from 'antd';
 import stylesheet from 'antd/dist/antd.min.css'
 
 import 'isomorphic-fetch'
@@ -21,20 +21,17 @@ class SignUp extends Component {
       bannerGallery: getGallery("hp-hero", props.galleries).slides,
       radioValue: 1,
     }
-  }
 
-  onRadioChange = (e) => {
-    console.log("ONCHANGE");
-    this.setState({
-      radioValue: e.target.value,
+    notification.config({
+      placement: 'topright',
+      top: 40,
+      duration: 2,
     });
-  };
+  }
 
   static async getInitialProps() {
     const articles = await getArticles();
     const galleries = await getGalleries();
-    console.log("GET INITIAL================================");
-    console.log(articles, galleries);
     return { articles, galleries };
   };
 
@@ -48,6 +45,39 @@ class SignUp extends Component {
       },
       body: JSON.stringify(data)
     })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.setState({ submitting: true });
+        // parse and clean results
+        if (values.how_they_found_out == "other") {
+          values.how_they_found_out = values.found_out_other;
+        }
+        values.interests = values.interests.join(", ")
+        // make the api call
+        this.submitForm(values).then((res) => {
+          let success = false;
+          if (res.status === 200) {
+            success = true;
+            notification.success({
+              message: "Sign-Up Success!",
+              description: `Thank you for signing up for Sacshiki. We'll be in touch.`,
+            });
+          } else {
+            notification.error({
+              message: "An error occurred",
+              description: `Something went wrong. Please try again`,
+            });
+          }
+          this.setState({ submitting: false, submitted: success });
+        });
+      } else {
+        return;
+      }
+    });
   }
 
   render () {
@@ -80,6 +110,10 @@ class SignUp extends Component {
       height: '30px',
       lineHeight: '30px',
     };
+    const buttonState = this.state.submitting ?
+      "submitting" : (this.state.submitted ?
+      "submitted" :
+      "default");
     return (
       <div>
         <Header galleries={this.state.galleries} articles={this.state.articles} />
@@ -116,27 +150,58 @@ class SignUp extends Component {
                 rules: [],
               })(<Input />)}
             </Form.Item>
+            <Form.Item label="Interests">
+              {getFieldDecorator('interests', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please select your interests!',
+                  },
+                ]}
+              )(
+                <Checkbox.Group options={['General Updates', 'Volunteering', 'Sewing']} />
+              )}
+            </Form.Item>
             <Form.Item label="How did you find out about us?">
-              <Radio.Group onChange={this.onRadioChange} value={this.state.radioValue}>
-                <Radio style={radioStyle} value={1}>
-                  Option A
-                </Radio>
-                <Radio style={radioStyle} value={2}>
-                  Option B
-                </Radio>
-                <Radio style={radioStyle} value={3}>
-                  Option C
-                </Radio>
-                <Radio style={radioStyle} value={4}>
-                  More...
-                  {this.state.radioValue === 4 ? <Input style={{ width: 100, marginLeft: 10 }} /> : null}
-                </Radio>
-              </Radio.Group>
+              {getFieldDecorator('how_they_found_out')(
+                <Radio.Group>
+                  <Radio style={radioStyle} value={"cameron"}>
+                    Through Cameron
+                  </Radio>
+                  <Radio style={radioStyle} value={"flyer"}>
+                    Flyer
+                  </Radio>
+                  <Radio style={radioStyle} value={"word_of_mouth"}>
+                    Word of Mouth
+                  </Radio>
+                  <Radio style={radioStyle} value={"forage_garden"}>
+                    Forage Garden
+                  </Radio>
+                  <Radio style={radioStyle} value={"social_media"}>
+                    Social Media
+                  </Radio>
+                  <Radio style={radioStyle} value={"east_bay_express"}>
+                    East Bay Express
+                  </Radio>
+                  <Radio style={radioStyle} value={"other"}>
+                    Other...
+                    { this.props.form.getFieldValue("how_they_found_out") === "other" ?
+                      getFieldDecorator('found_out_other')(
+                        <Input style={{ width: 100, marginLeft: 10 }}/>
+                      ) : null }
+                  </Radio>
+                </Radio.Group>
+              )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type="primary" htmlType="submit">
-                Register
-              </Button>
+              { buttonState === "default" ?
+                <Button type="primary" htmlType="submit">
+                  Register
+                </Button> : null }
+              { buttonState === "submitting" ?
+                <div className="submit" id="submitting"> Submitting </div> : null }
+              { buttonState === "submitted" ?
+                <div className="submit" id="submitted"> Thank You! </div> : null }
             </Form.Item>
           </Form>
         </div>
@@ -145,6 +210,26 @@ class SignUp extends Component {
         <style jsx>{`
           #formWrapper {
             padding: 10px 90px 10px 90px;
+          }
+          @media only screen and (max-width: 650px) {
+            #formWrapper {
+              padding: 10px 20px 10px 20px;
+            }
+          }
+          .submit {
+            border-radius: 4px;
+            border: 1px solid #171717;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+          }
+          #submitting {
+            color: white;
+            background: #171717;
+          }
+          #submitted {
+            color: #171717;
+            background: white;
           }
         `}</style>
       </div>
