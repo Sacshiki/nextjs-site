@@ -29,11 +29,19 @@ function Article({ article, articles, galleries }) {
 
   const router = useRouter();
 
+  let videoPlay = (article.slug == 'how-to-tie-a-sacshiki') ? 
+    <div>
+      <iframe src="https://player.vimeo.com/video/372836376" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" align="center" allowfullscreen></iframe>
+      <img src="https://storage.googleapis.com/cdn.sacshiki.com/article/hang-tag-horizontal-read.png"></img>
+      <br /><br /><br />
+    </div> : '';
+
   return <>
     <Head>
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
       <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
+      <script async charset="utf-8" src="//cdn.iframe.ly/embed.js" ></script>
       <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
     <Header galleries={galleries} articles={articles} disabledArticleSlug={article.slug}/>
@@ -46,12 +54,15 @@ function Article({ article, articles, galleries }) {
         </div>
         : ''
       }  */}
-
-      <div className="section">
+      <div id="section">
+        
         <article>
-        { ReactHtmlParser (article.content) }
+          { videoPlay }
+          
+          { ReactHtmlParser (article.content) }
         </article>
       </div>
+
     </div>
 
     <Footer/>
@@ -69,6 +80,10 @@ function Article({ article, articles, galleries }) {
       }
       article > * {
         min-width: 0;
+    }
+
+    article {
+      margin-top: 15px
     }
     
     article > h1 {
@@ -134,7 +149,7 @@ function Article({ article, articles, galleries }) {
       article {
             display: grid;
             /* I'm using 440px instead of 740px as it makes it easier to view it in the Scrimba simulator additive-symbols: */
-            grid-template-columns: 1fr 1fr 10px 440px 10px 1fr 1fr;
+            grid-template-columns: 1fr 1fr 10px 740px 10px 1fr 1fr;
         }
         
         article > * {
@@ -156,6 +171,11 @@ function Article({ article, articles, galleries }) {
             color: #666;
             border-left: 3px solid black;
             padding-left: 10px;
+        }
+
+        iframe {
+          margin: auto;
+          display: block;
         }
         
         /* General styling */
