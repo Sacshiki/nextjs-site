@@ -22,8 +22,6 @@ class Header extends Component {
       disabledArticleSlug: this.props.disabledArticleSlug,
       showArticles: false,
     }
-    this.ref = React.createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
 
     const gallery = getGallery("hp-modal", props.galleries)
     if (gallery.slides.length > 0) {
@@ -33,29 +31,11 @@ class Header extends Component {
     }
   }
 
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
-
-  handleClickOutside(event) {
-    if (this.ref && !this.ref.current.contains(event.target)) {
-      this.setState({showArticles: false});
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.disabledArticleSlug !== this.state.disabledArticleSlug) {
       this.setState({ disabledArticleSlug: nextProps.disabledArticleSlug });
     }
   }
-
-    componentDidMount() {
-      document.addEventListener('mousedown', this.handleClickOutside);
-    }
-
-    componentWillUnmount() {
-      document.removeEventListener('mousedown', this.handleClickOutside);
-    }
 
   renderMenu() {
     return (
@@ -79,29 +59,27 @@ class Header extends Component {
             background: white;
             position: absolute;
             right: 0px;
-            top: 55px;
+            top: 50px;
             border-radius: 3px;
           }
           .link {
             width: 250px;
             height: 50px;
             padding-left: 8px;
-            color: #171717;
+            color: #2a2a2a7a;
             cursor: pointer;
             line-height: 50px;
           }
           .link:hover {
-            background: #2A2A2A;
-            color: white;
+            color: #171717;
             transition: 0.3s;
           }
           .menuItem:not(:first-child) {
             border-top: 1px solid #171717;
           }
           .disabled {
-            background: #2A2A2A;
             pointer-events:none;
-            color: white;
+            color: #171717;
           }
         `}</style>
       </div>
@@ -177,7 +155,7 @@ class Header extends Component {
 
   render () {
     return (
-      <div id='header' ref={this.ref}>
+      <div id='header' onMouseLeave={()=>this.setState({showArticles: false})}>
         <div id='row'>
           <div id='logo'>
             <SacshikiLogo/>
@@ -188,7 +166,7 @@ class Header extends Component {
             </div>
             <div id='articles'
                  className={"link" + (this.state.showArticles ? " selected" : "")}
-                 onClick={()=>this.setState({showArticles: !this.state.showArticles})}>
+                 onMouseEnter={()=>this.setState({showArticles: true})}>
               Articles
             </div>
             <div id='iglogo'>
@@ -238,14 +216,11 @@ class Header extends Component {
           .selected {
             background: white;
             color: #171717;
-            border: 1px solid #171717;
             border-radius: 3px;
-            padding: 6px;
+            z-index: 100;
           }
           .selected:hover {
-            background: #171717;
-            color: white;
-            border: 1px solid white;
+            color: #171717;
           }
           #articles {
             margin-right: 15px;
