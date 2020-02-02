@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Header from '../components/header.js'
 import Banner from '../components/banner.js'
 import Footer from '../components/footer.js'
-const { getGalleries, getGallery, getArticles, Alert } = require('../utils/strapi.js')
+const { getGalleries, getGallery, getArticles } = require('../utils/strapi.js')
 
 import { Form, Input, Select, Button, Radio, Checkbox, notification } from 'antd';
 import stylesheet from 'antd/dist/antd.min.css'
@@ -201,11 +201,6 @@ class SignUp extends Component {
                 </Button> : null }
               { buttonState === "submitting" ?
                 <div className="submit" id="submitting"> Submitting </div> : null }
-              { buttonState === "submitted" ?
-                <Alert message="Thank you" type="success" 
-                closable
-                afterClose={this.handleClose} />
-                : null }
             </Form.Item>
           </Form>
         </div>
