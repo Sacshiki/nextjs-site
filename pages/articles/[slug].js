@@ -187,36 +187,37 @@ function Article({ article, articles, galleries }) {
             padding: 0;
             line-height: 1.4;
         }
-        
+        .mb-20 {
+          margin-bottom:20px
+        }
+        #card2 {
+          width: 100%;
+          background: rgba(243, 215, 198, 0.6);
+          position: relative;
+        }
+        #row {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+        #slide1 {
+          width: 50vw;
+          min-width: 50vw;
+          height: 50vw;
+          padding: 50px;
+          margin-left: 40px;
+          margin-right: -50px;
+        }    
     
+
 
       @media only screen and (max-width: 650px) {
         .textContainer {
           padding: 20px;
         }
-      }
-      .mb-20 {
-        margin-bottom:20px
-      }
-      #card2 {
-        width: 100%;
-        background: rgba(243, 215, 198, 0.6);
-        position: relative;
-      }
-      #row {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-      }
-      #slide1 {
-        width: 50vw;
-        min-width: 50vw;
-        height: 50vw;
-        padding: 50px;
-        margin-left: 40px;
-        margin-right: -50px;
-      }
-      @media only screen and (max-width: 650px) {
+        article {
+          grid-template-columns: 1fr 1fr 10px 340px 10px 1fr 1fr;
+        }
         #row {
           display: flex;
           flex-direction: column-reverse;
