@@ -31,7 +31,9 @@ function Article({ article, articles, galleries }) {
 
   let videoPlay = (article.slug == 'how-to-tie-a-sacshiki') ? 
     <div>
-      <iframe src="https://player.vimeo.com/video/388789317" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" align="center" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/388789317" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen" align="center" allowFullScreen></iframe>
+      <br /><br /><br />
+      <h2>Hang Tag Instructions:</h2>
       <img src="https://storage.googleapis.com/cdn.sacshiki.com/article/hang-tag-horizontal-read.png"></img>
       <br /><br /><br />
     </div> : '';
@@ -41,7 +43,7 @@ function Article({ article, articles, galleries }) {
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
       <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
-      <script async charset="utf-8" src="//cdn.iframe.ly/embed.js" ></script>
+      <script async charSet="utf-8" src="//cdn.iframe.ly/embed.js" ></script>
       <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
     <Header galleries={galleries} articles={articles} disabledArticleSlug={article.slug}/>
