@@ -75,7 +75,7 @@ class SignUp extends Component {
             });
           }
           this.setState({ submitting: false, submitted: success });
-          // this.props.form.resetFields()
+          this.props.form.resetFields()
 
         });
       } else {
