@@ -61,18 +61,22 @@ class SignUp extends Component {
         this.submitForm(values).then((res) => {
           let success = false;
           if (res.status === 200) {
+            console.log("sign up success")
             success = true;
             notification.success({
               message: "Sign-Up Success!",
               description: `Thank you for signing up for Sacshiki. We'll be in touch.`,
             });
           } else {
+            console.log("error on signup")
             notification.error({
               message: "An error occurred",
               description: `Something went wrong. Please try again`,
             });
           }
           this.setState({ submitting: false, submitted: success });
+          // this.props.form.resetFields()
+
         });
       } else {
         return;
@@ -165,9 +169,6 @@ class SignUp extends Component {
             <Form.Item label="How did you find out about us?">
               {getFieldDecorator('how_they_found_out')(
                 <Radio.Group>
-                  <Radio style={radioStyle} value={"cameron"}>
-                    Through Cameron
-                  </Radio>
                   <Radio style={radioStyle} value={"flyer"}>
                     Flyer
                   </Radio>
@@ -201,7 +202,10 @@ class SignUp extends Component {
               { buttonState === "submitting" ?
                 <div className="submit" id="submitting"> Submitting </div> : null }
               { buttonState === "submitted" ?
-                <div className="submit" id="submitted"> Thank You! </div> : null }
+                <>
+                <div className="submit" id="submitted"> Submit </div>
+                <div>Thanks!</div>
+                </> : null }
             </Form.Item>
           </Form>
         </div>

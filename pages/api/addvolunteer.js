@@ -9,9 +9,9 @@ export default (req, res) => {
     how_they_found_out = '',
   } = req.body
 
-  console.log("API==================");
-  console.log(req.body);
-  console.log("API==================");
+  // console.log("API==================");
+  // console.log(req.body);
+  // console.log("API==================");
 
   mailer.addVolunteer(email, first_name, last_name, interests, how_they_found_out).then(() => {
     res.send("OK")
