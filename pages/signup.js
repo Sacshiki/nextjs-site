@@ -231,6 +231,7 @@ class SignUp extends Component {
             background: white;
           }
         `}</style>
+        
       </div>
     );
   }

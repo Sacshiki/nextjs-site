@@ -1,15 +1,26 @@
 import { Component } from 'react'
 import { LargeTopo } from './topography.js'
 import { IgIcon, SacshikiLogo } from './logo.js'
+import { initGA, logPageView } from '../utils/analytics'
 
 import Emailer from './emailer.js'
 
 class Footer extends Component {
+
   constructor (props) {
     super(props)
     this.state = {
     }
   }
+
+  componentDidMount () {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
+  }
+
   render () {
     return (
       <div id='footer'>
@@ -27,7 +38,7 @@ class Footer extends Component {
             <IgIcon width={"23px"} height={"24px"}/>
           </div>
         </div>
-        <h3 id='cc'>2019 © Sacshiki. All rights reserved</h3>
+        <h3 id='cc'>2020 © Sacshiki. All rights reserved</h3>
 
         <style jsx>{`
           #footer {
@@ -90,6 +101,7 @@ class Footer extends Component {
             }
           }
         `}</style>
+        
       </div>
     )
   }
