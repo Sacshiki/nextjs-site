@@ -17,6 +17,9 @@
     "react-markdown": "^4.3.1",
     "react-moment": "^0.9.7"
   },
+  "engines": {
+    "node": ">=14.1 <15"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",

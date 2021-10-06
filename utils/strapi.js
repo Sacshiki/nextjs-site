@@ -9,9 +9,11 @@ const getGalleries = () => {
   .then(response=>response.json())
   .then(galleries=>{
     for (let gallery of galleries) {
+      gallery.slides = gallery.slides.filter(sl=> sl.Image && sl.Image.url )
         for (let slide of gallery.slides) {
           // cdn path allows for caching with CloudFlare
-          slide.link = `https://cdn.sacshiki.com/slide/${slide.Image.name}`
+
+          slide.link = slide.Image.url
           if (slide.Image_mobile) {
             slide.mobileLink = `https://cdn.sacshiki.com/slide/${slide.Image_mobile.name}`
           }
