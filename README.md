@@ -1,3 +1,3 @@
-run
-npm install
-npm run dev
+# RUN DEV
+yarn
+yarn dev

@@ -22,7 +22,7 @@ class HomeHero extends Component {
     super(props)
     this.state = {
       imageUrl: "https://storage.googleapis.com/cdn.sacshiki.com/slide/sacshiki_hero_rough_1_lite-compressor.jpg",
-      mobileImageUrl: "/static/images/2a2a2a.png",
+      mobileImageUrl: "https://storage.googleapis.com/cdn.sacshiki.com/slide/sacshiki_hero_rough_1_mobile.jpg",
       slug: "hp-hero"
     }
 
@@ -42,9 +42,9 @@ class HomeHero extends Component {
         <img id='model1' className='splash' src={this.state.imageUrl} alt="model1" />
         <img id='mobilemodel1' className='splash' src={this.state.mobileImageUrl} alt="model1" />
         <div id='maintext'>
-          <div className='title'>Your favorite pocket</div>
-          <div className='subtitle'>An accessory you didn&#8217;t know you needed -</div>
-          <div className='subtitle'>but it will change your life and your community</div>
+          <div className='title'>Your new favorite pocket</div>
+          <div className='subtitle'>A bag so useful and comfortable</div>
+          <div className='subtitle'>you'll leave the house not realizing you're already wearing it.</div>
         </div>
 
         <style jsx>{`
@@ -86,6 +86,7 @@ class HomeHero extends Component {
             font-size: 50px;
             line-height: 68px;
             text-align: center;
+            padding-bottom: 20px;
           }
           .subtitle {
             font-weight: 300;
@@ -100,6 +101,9 @@ class HomeHero extends Component {
             }
             #mobilemodel1 {
               display: inline;
+            }
+            #maintext {
+              padding: 30px
             }
           }
 
