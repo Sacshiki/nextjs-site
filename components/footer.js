@@ -38,7 +38,7 @@ class Footer extends Component {
             <IgIcon width={"23px"} height={"24px"}/>
           </div>
         </div>
-        <h3 id='cc'>2020 © Sacshiki. All rights reserved</h3>
+        <h3 id='cc'>2021 © Sacshiki. All rights reserved</h3>
 
         <style jsx>{`
           #footer {

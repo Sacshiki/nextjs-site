@@ -33,8 +33,8 @@ function Article({ article, articles, galleries }) {
     <div>
       <iframe src="https://player.vimeo.com/video/388789317" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen" align="center" allowFullScreen></iframe>
       <br /><br /><br />
-      <h2>Hang Tag Instructions:</h2>
-      <img src="https://storage.googleapis.com/cdn.sacshiki.com/article/hang-tag-horizontal-read.png"></img>
+      <h2>Drawn Step by Step Instructions:</h2>
+      <img src="https://storage.googleapis.com/cdn.sacshiki.com/knowledge-files/V3-Hangtag-07-web.jpg"></img>
       <br /><br /><br />
     </div> : '';
 
