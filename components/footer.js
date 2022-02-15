@@ -65,6 +65,7 @@ class Footer extends Component {
             width: 125.7px;
             height: 56.01px;
             z-index: 101;
+            margin-bottom: 20px
           }
           #ig {
             width: 33px;
