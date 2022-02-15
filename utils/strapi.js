@@ -15,7 +15,7 @@ const getGalleries = () => {
 
           slide.link = slide.Image.url
           if (slide.Image_mobile) {
-            slide.mobileLink = `https://cdn.sacshiki.com/slide/${slide.Image_mobile.name}`
+            slide.mobileLink = `https://cdn.sacshiki.com/knowledge-files/${slide.Image_mobile.name}`
           }
         }
     }
