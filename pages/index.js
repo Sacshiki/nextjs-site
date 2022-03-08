@@ -168,7 +168,7 @@ class Card2 extends Component {
             height: 50vw;
             padding: 50px;
             margin-left: 40px;
-            margin-right: -50px;
+            // margin-right: -50px;
           }
           #card2content h1 {
             font-size: 24px;
@@ -278,6 +278,7 @@ class Card3 extends Component {
           #slide2 {
             width: 50vw;
             height: 50vw;
+            padding: 50px;
           }
           #card3content h1 {
             font-size: 24px;
