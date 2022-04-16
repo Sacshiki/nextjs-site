@@ -24,7 +24,6 @@ class Header extends Component {
     }
 
     const gallery = getGallery("hp-modal", props.galleries)
-    console.log("Header: ", gallery)
     if (gallery.slides.length > 0) {
       this.state.imageUrl = gallery.slides[0].link
     }
