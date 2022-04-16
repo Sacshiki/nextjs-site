@@ -1,0 +1,54 @@
+.slide {
+    height: 100vw;
+    width: 100vw;
+    margin-left: 0px;
+    margin-right: 0px;
+    align-items: center;
+  }
+.img-col {
+    margin:40px;
+    justify-content: center;
+    display: flex;
+}
+.even-step {
+    background-image: url("https://storage.googleapis.com/cdn.sacshiki.com/assets/making-bg.jpg");
+    background-size: cover;
+}
+.text-col {
+    display:flex;
+    justify-content: center;
+    margin: 40px;
+    height: 32vw;
+}
+.text-col article {
+    width:32vw;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-start;
+    flex-direction: column;
+}
+.text-col h3 {
+    font-size: 1.6em;
+    line-height: 1.6em;
+}
+.text-col h3 span {
+    border-bottom: 1px solid black;
+}
+.text-col h4 {
+    font-size: 1.6em;
+}
+.text-col p {
+    font-size: 1.1em;
+}
+@media only screen and (max-width: 650px) {
+    .text-col {
+        height: 50vw
+    }
+    .slide {
+      height: 100vw;
+      width: 100vw;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding: 40px;
+    }
+  }

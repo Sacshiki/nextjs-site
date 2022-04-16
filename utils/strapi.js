@@ -25,15 +25,13 @@ const getGalleries = () => {
 
 const getGallery = (gallerySlug, galleries) => {
   // knowledge-subdomain path allows for caching with CloudFlare
-  for (let gallery of galleries) {
-    if (gallery.slug === gallerySlug) {
-      // console.log("returned gallery:  ", gallery)
-      return gallery
+  let gallery = galleries.find(gal=>gal.slug == gallerySlug)
+  if (process.env.ENVIRONMENT == "test" && gallery.slides) {
+    for (let slide of gallery.slides) {
+      slide.link = slide.link.replace('https://cdn.sacshiki.com','https://storage.googleapis.com/cdn.sacshiki.com')
     }
   }
-  return []
-  ;
-
+  return gallery
 }
 
 const getArticles = () => {

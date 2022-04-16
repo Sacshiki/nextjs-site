@@ -22,7 +22,7 @@ class Banner extends Component {
 
         <style jsx>{`
           #banner {
-            height: 250px;
+            height: 20vw;
             width: 100%;
             background: black;
           }
@@ -31,7 +31,7 @@ class Banner extends Component {
             width: 100%;
           }
           .bannerImg {
-            height: 250px;
+            height: 20vw;
             width: 100%;
             overflow: hidden;
             object-fit: cover;
@@ -41,7 +41,7 @@ class Banner extends Component {
           #bannerText {
             position: absolute;
             width: 100%;
-            height: 250px;
+            height: 20vw;
             top: 0;
 
             display: flex;
