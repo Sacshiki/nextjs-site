@@ -238,5 +238,5 @@ class SignUp extends Component {
 }
 
 
-const SignUpForm = Form.create()(SignUp);
-export default SignUpForm;
+// const SignUpForm = Form.create()(SignUp);
+export default SignUp;

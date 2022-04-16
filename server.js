@@ -15,7 +15,7 @@ app.prepare().then(() => {
 
   server.post('*', (req, res) => {
     console.log("POST-------------------------------");
-    console.log(req,res);
+    // console.log(req,res);
     return handle(req, res)
   })
 
