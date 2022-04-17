@@ -1,10 +1,6 @@
 .slide {
-    height: 100vw;
-    width: 100vw;
-    margin-left: 0px;
-    margin-right: 0px;
     align-items: center;
-  }
+}
 .img-col {
     margin:40px;
     justify-content: center;
