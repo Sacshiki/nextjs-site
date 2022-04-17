@@ -31,7 +31,7 @@ const StepShow = ({ step, idx }) => {
       </div>
 
       const imgCol = <div className="img-col">
-          <Image width={500} className="slide"
+          <Image className="slide"
           src={step.link}
           />
       </div>
@@ -76,7 +76,7 @@ const Article= ({ articles, galleries }) => {
 
             { steps && steps.map((slide,idx)=>(
                 <>
-                <StepShow step={slide} idx={idx} />
+                <StepShow step={slide} idx={idx} key={idx} />
                 </>
             ))}
 
