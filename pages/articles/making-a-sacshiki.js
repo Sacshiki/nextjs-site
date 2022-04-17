@@ -39,15 +39,15 @@ const StepShow = ({ step, idx }) => {
       const rightCol = (stepNum%2==0) ? imgCol : textCol
       const classRow = (stepNum%2==0) ? "even-step" : "odd-step"
       return <>
-      <Row gutter={[36,36]} className={classRow}>
-        <Col md={2} sm={0}></Col>
-        <Col md={10} sm={12}>
+      <Row gutter={[0,0]} className={classRow}>
+        <Col md={2} sm={0} xs={0}></Col>
+        <Col md={10} sm={24} xs={24}>
             {leftCol}
         </Col>
-        <Col md={10} sm={12}>
+        <Col md={10} sm={24} xs={24}>
             {rightCol}
         </Col>
-        <Col md={2} sm={0}></Col>
+        <Col md={2} sm={0} xs={0}></Col>
 
       </Row>
       </>
