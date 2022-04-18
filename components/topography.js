@@ -8,7 +8,7 @@ class LargeTopo extends Component {
 
   render () {
     return (
-      <svg preserveAspectRatio="none" viewBox="0 0 1440 887" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg preserveAspectRatio="none" viewBox="0 0 1440 887" fill="none" xmlns="http://www.w3.org/2000/svg" className="topo-svg">
         <g opacity={this.opacity}>
           <path d="M400 -80.5C403.189 -59.0395 416.717 -40.3807 432.785 -25.8675C446.815 -13.1943 465.372 -2.29555 487 -3.60738" stroke="white" strokeWidth="5"/>
           <path d="M157 -122.5C157 -122.5 224.957 -64.3245 236 6.5" stroke="white" strokeWidth="5"/>
