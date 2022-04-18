@@ -21,22 +21,9 @@ class Banner extends Component {
         </div>
 
         <style jsx>{`
-          #banner {
-            height: 20vw;
-            width: 100%;
-            background: black;
-          }
           #carousel {
             height: 250px;
             width: 100%;
-          }
-          .bannerImg {
-            height: 20vw;
-            width: 100%;
-            overflow: hidden;
-            object-fit: cover;
-            object-position: center center;
-            opacity: 0.65;
           }
           #bannerText {
             position: absolute;

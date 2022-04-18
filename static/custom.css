@@ -18,3 +18,26 @@
 .topo-svg {
 	width: 100%
 }
+#banner {
+	height: 20vw;
+	width: 100%;
+	background: black;
+  }
+.bannerImg {
+	height: 20vw;
+	width: 100%;
+	overflow: hidden;
+	object-fit: cover;
+	object-position: center center;
+	opacity: 0.65;
+}
+
+@media only screen and (max-width: 650px) {
+ #banner,.bannerImg {
+	 height: 25vh
+ }
+ #bannerText #bannerTitle {
+	 margin-top:30%;
+	 font-size: 1.4em
+ }
+}
