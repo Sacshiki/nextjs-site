@@ -1,6 +1,6 @@
 import { withRouter, useRouter } from "next/router";
 import {  Row, Col, Image  } from "antd";
-import styles from './how-to-sacshiki.css'
+import styles from './how-to-sacshiki.module.css'
 const { getGalleries, getGallery, getArticle, getArticles } = require('../../utils/strapi.js')
 
 import Head from 'next/head'
@@ -22,7 +22,7 @@ function flatten(text, child) {
 const StepShow = ({ step, idx }) => {
       const stepNum = idx+1
 
-      const textCol = <div className="text-col">
+      const textCol = <div className={styles.textcol}>
         <article>
           <h3><span>0{stepNum}</span></h3>
           <h4>{step.Title}</h4>
@@ -30,14 +30,14 @@ const StepShow = ({ step, idx }) => {
         </article>
       </div>
 
-      const imgCol = <div className="img-col">
-          <Image className="slide"
+      const imgCol = <div className={styles.imgcol}>
+          <Image className={styles.slide}
           src={step.link}
           />
       </div>
       const leftCol = (stepNum%2==0) ? textCol : imgCol
       const rightCol = (stepNum%2==0) ? imgCol : textCol
-      const classRow = (stepNum%2==0) ? "even-step" : "odd-step"
+      const classRow = (stepNum%2==0) ? styles.evenstep : styles.oddstep
       return <>
       <Row gutter={[0,0]} className={classRow}>
         <Col md={2} sm={0} xs={0}></Col>
@@ -72,7 +72,7 @@ const Article= ({ articles, galleries }) => {
     <div>
       <Banner images={media} text="The Making of a Sacshiki" />
       
-    <section id="section" className="test">
+    <section id="section">
 
             { steps && steps.map((slide,idx)=>(
                 <>

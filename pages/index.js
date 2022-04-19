@@ -6,16 +6,8 @@ import Emailer from '../components/emailer.js'
 import Gallery from '../components/gallery.js'
 import { LargeTopo } from '../components/topography.js'
 import { Component } from 'react'
+import {  Row, Col, Image  } from "antd";
 const { getGalleries, getGallery, getArticles } = require('../utils/strapi.js')
-
-import {
-  Row,
-  Col,
-  Layout,
-  Carousel,
-  Button,
-} from 'antd';
-import stylesheet from 'antd/dist/antd.min.css'
 
 class HomeHero extends Component {
   constructor (props) {
@@ -43,8 +35,7 @@ class HomeHero extends Component {
         <img id='mobilemodel1' className='splash' src={this.state.mobileImageUrl} alt="model1" />
         <div id='maintext'>
           <div className='title'>Your new favorite pocket</div>
-          <div className='subtitle'>A bag so useful and comfortable</div>
-          <div className='subtitle'>you'll leave the house not realizing you're already wearing it.</div>
+          <div className='subtitle'>So useful, comfortable and stylish you'll never regret bringing it out.</div>
         </div>
 
         <style jsx>{`
@@ -121,28 +112,35 @@ class HomeHero extends Component {
   }
 }
 
-class Card2 extends Component {
+class Functional extends Component {
   constructor (props) {
     super(props)
   }
 
   render () {
     return (
-      <div id='card2'>
+      <div id='card2' className="topo-bg">
         <LargeTopo/>
-        <div id='row'>
-          <div id='slide1'>
+        <Row>
+          <Col md={2}></Col>
+          <Col md={10}>
+
+          <div className='hp-slides'>
             <Gallery slug='hp-fashion' captions={true} speed={7000} {...this.props}/>
           </div>
-          <div id='card2content'>
-            <h1>Functional fashion</h1>
-            <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
-            <div id='maincta'>
-              <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be indispensable piece of fashion and join us at our next pop-up:</em></h3>
-              <Emailer dark={false} isAddContact={true}/>
+          </Col>
+          <Col md={10} className="flex">
+          
+            <div className='cardcontent'>
+              <h1>Functional fashion</h1>
+              <h3 className="mb-20">Sacshiki began as a tool for the urban forager that evolved from furoshiki, a centuries-old Japanese craft of folding and knotting fabric for parcels, gifts, and anything that needs to be carried. Now the tradition is evolving with Sacshiki, a thoughtfully designed alternative to the single-use plastics that harm our environment.</h3>
+              <div id='maincta'>
+                <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be indispensable piece of fashion and join us at our next pop-up:</em></h3>
+                <Emailer dark={false} isAddContact={true}/>
+              </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div id='secondarycta'>
           <h3><em>Sign up to learn more about this useful and beautiful, soon-to-be-indispensable piece of fashion and join us at our next pop-up:</em></h3>
           <Emailer dark={false} isAddContact={true}/>
@@ -154,7 +152,6 @@ class Card2 extends Component {
           }
           #card2 {
             width: 100%;
-            background: rgba(243, 215, 198, 0.6);
             position: relative;
           }
           #row {
@@ -242,31 +239,62 @@ class Card2 extends Component {
   }
 }
 
-class Card3 extends Component {
+class Creator extends Component {
   constructor (props) {
     super(props)
   }
 
   render () {
     return (
-      <div id='card3'>
-        <div id='row'>
-          <div id='card3content'>
-            <h1>Reconnect with nature</h1>
-            <h3 className="mb-20">There&#8217;s no other way to connect with nature than to be a part of it. The Sacshiki team is also building foraging gardens and showing the people in our community how to plant, care for and harvest wild edibles. This is what drives Sacshiki and keeps us moving forward.</h3>
-            <h3><em>Proceeds from Sacshiki sales go directly towards our foraging initiatives.</em></h3>
-          </div>
-          <div id='slide2'>
-            <Gallery slug='hp-foraging' {...this.props}/>
-          </div>
-        </div>
+      <div id='card4'>
+        <Row>
+          <Col md={2}></Col>
+          <Col md={10} className="flex">
+            <div className='cardcontent'>
+              <h1>The Sacshiki Creator Story</h1>
+              <p>First learning the art and utility of furoshiki in 2016, Cameron started utilizing it on a daily basis along with his burgeoning plant foraging practice. He started playing with new ways of keeping a bandana fashioned into a sack on his hip, and was happy to find a use for his new sewing machine.  He began customizing the bandanas, adding reinforcements and grommets and wearing the new innovations daily to beta test his ideas.</p>
+              <p>Five years of innovative tinkering later, with much credit to friends and family feedback, the first commercial release was sold at a Holiday market in Oakland in 2021 to a huge success! </p>
+              <p>Cameron plays a crucial role in the creation of each sacshiki, doing many of the steps found in the article <a href="/explore/making-a-sacshiki">Making of a Sacshiki.</a></p>
+            </div>
+          </Col>
+          <Col md={10} className="flex">
+            <div className='imgwrap'>
+              <Image src="https://storage.googleapis.com/cdn.sacshiki.com/assets/founder-seated1024.jpg"></Image>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+}
+
+class Forage extends Component {
+  constructor (props) {
+    super(props)
+  }
+
+  render () {
+    return (
+      <div id='card3' className='topo-bg'>
+        <LargeTopo/>
+        <Row>
+          <Col md={2}></Col>
+            <Col md={10}>
+              <div className='hp-slides'>
+                <Gallery slug='hp-foraging' {...this.props}/>
+              </div>
+            </Col>
+            <Col md={10} className="flex">
+              <div className='cardcontent'>
+                <h1>Sacshiki Garden Collaboration</h1>
+                <p className="mb-20">Cameron is also the catalyst and co-founder of the Oakland Urban Farming Project.  With OUFP he is able to devote time to building areas for people to forage throughout the Oakland area. </p>
+                <p>Sacshiki support allows him and his growing team to spend more time developing an app to assist in garden building and to spread the love of foraging to any community interested in participating. </p>
+              </div>
+            </Col>
+        </Row>
         <style jsx>{`
-          .mb-20 {
-            margin-bottom:20px
-          }
           #card3 {
             width: 100%;
-            background: white;
             overflow: hidden;
           }
 
@@ -274,11 +302,6 @@ class Card3 extends Component {
             display: flex;
             flex-direction: row;
             justify-content: center;
-          }
-          #slide2 {
-            width: 50vw;
-            height: 50vw;
-            padding: 50px;
           }
           #card3content h1 {
             font-size: 24px;
@@ -333,8 +356,9 @@ function Index({ galleries, articles }) {
 
     <Header galleries={galleries} articles={articles}/>
     <HomeHero galleries={galleries}/>
-    <Card2 galleries={galleries}/>
-    <Card3 galleries={galleries}/>
+    <Functional galleries={galleries}/>
+    <Creator />
+    <Forage galleries={galleries}/>
     <Footer/>
 
     <style jsx global>{`

@@ -9,7 +9,6 @@ import {
   Modal,
   Icon,
 } from 'antd'
-import customstyle from '../static/custom.css'
 
 class Header extends Component {
   constructor (props) {
@@ -43,7 +42,7 @@ class Header extends Component {
           return (
             <div className="menuItem">
               <div className={className}>
-                <Link href={{ pathname: `/articles/${article.slug}` }}>
+                <Link href={{ pathname: `/explore/${article.slug}` }}>
                   <div> {article.title} </div>
                 </Link>
               </div>
@@ -165,7 +164,7 @@ class Header extends Component {
             <div id='articles'
                  className={"link" + (this.state.showArticles ? " selected" : "")}
                  onMouseEnter={()=>this.setState({showArticles: true})}>
-              Articles
+              Explore
             </div>
             <div id='iglogo'>
               <IgIcon />

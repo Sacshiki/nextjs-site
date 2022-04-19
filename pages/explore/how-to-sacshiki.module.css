@@ -1,52 +1,52 @@
-.ant-image-img.slide {
+.slide {
     align-items: center;
     height: 32vw;
 }
-.img-col {
+.imgcol {
     margin:40px;
     height: 32vw;
     justify-content: center;
     display: flex;
 }
-.even-step {
+.evenstep {
     background-image: url("https://storage.googleapis.com/cdn.sacshiki.com/assets/making-bg.jpg");
     background-size: cover;
 }
-.text-col {
+.textcol {
     display:flex;
     justify-content: center;
     margin: 40px;
     height: 32vw;
 }
-.text-col article {
+.textcol article {
     width:32vw;
     display: flex;
     justify-content: flex-end;
     align-content: flex-start;
     flex-direction: column;
 }
-.text-col h3 {
+.textcol h3 {
     font-size: 1.6em;
     line-height: 1.6em;
 }
-.text-col h3 span {
+.textcol h3 span {
     border-bottom: 1px solid black;
 }
-.text-col h4 {
+.textcol h4 {
     font-size: 1.6em;
 }
-.text-col p {
+.textcol p {
     font-size: 1.1em;
 }
 @media only screen and (max-width: 650px) {
-    .text-col {
+    .textcol {
         height: auto;
         margin-bottom: 0
     }
-    .text-col article {
+    .textcol article {
         width: 100vw
     }
-    .img-col {
+    .imgcol {
         height: 90vw;
         margin-top: 0
     }
