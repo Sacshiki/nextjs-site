@@ -41,16 +41,17 @@
 @media only screen and (max-width: 650px) {
     .textcol {
         height: auto;
-        margin-bottom: 0
+        margin-bottom: 0;
+        margin-top: 20px;
     }
     .textcol article {
-        width: 100vw
+        width: 100vw;
     }
     .imgcol {
         height: 90vw;
         margin-top: 0
     }
-    .ant-image-img.slide {
+    .slide {
       height: 100vw;
       width: 100vw;
       margin-left: 0px;

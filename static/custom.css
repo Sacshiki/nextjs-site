@@ -69,8 +69,17 @@
  }
  .cardcontent {
 	width: 100vw;
-    margin-bottom: -35px;
     margin-left: 0px;
     padding-right: 40px;
+ }
+ .cardcontent {
+	 padding-top: 20px;
+	 padding-bottom:0
+ }
+ .hp-slides {
+	 padding-bottom: 20px;
+ }
+ #maincta {
+	 padding-bottom: 40px
  }
 }
