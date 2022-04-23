@@ -2,8 +2,8 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/articles/how-to-sacshiki',
-        destination: '/explore/how-to-sacshiki',
+        source: '/articles/:slug',
+        destination: '/explore/:slug',
         permanent: true,
       },
     ]

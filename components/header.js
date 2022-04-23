@@ -42,7 +42,7 @@ class Header extends Component {
           return (
             <div className="menuItem">
               <div className={className}>
-                <Link href={{ pathname: `/explore/${article.slug}` }}>
+                <Link key={i} href={{ pathname: `/explore/${article.slug}` }}>
                   <div> {article.title} </div>
                 </Link>
               </div>
@@ -98,7 +98,7 @@ class Header extends Component {
           <div id='modalcontent'>
             <h1>Drop us a line</h1>
             <h3>Interested in sewing? Volunteering at a forage garden? Press Inquiry? Or just have a question? Here you go:</h3>
-            <Emailer showContentInput={true}/>
+            <Emailer showContentInput={true} closeModal={()=>this.setState({showModal: false})} />
             <p onClick={()=>this.setState({showModal: false})}>Nope, changed my mind!</p>
           </div>
         </div>
