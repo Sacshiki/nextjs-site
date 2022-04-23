@@ -35,7 +35,7 @@ class HomeHero extends Component {
         <img id='mobilemodel1' className='splash' src={this.state.mobileImageUrl} alt="model1" />
         <div id='maintext'>
           <div className='title'>Your new favorite pocket</div>
-          <div className='subtitle'>So useful, comfortable and stylish you'll never regret bringing it out.</div>
+          <div className='subtitle'>So useful, comfortable and stylish that being ready has a new look.</div>
         </div>
 
         <style jsx>{`
@@ -252,7 +252,7 @@ class Creator extends Component {
           <Col md={10} className="flex">
             <div className='cardcontent'>
               <h1>The Sacshiki Creator Story</h1>
-              <p>First learning the art and utility of furoshiki in 2016, Cameron started utilizing it on a daily basis along with his burgeoning plant foraging practice. He started playing with new ways of keeping a bandana fashioned into a sack on his hip, and was happy to find a use for his new sewing machine.  He began customizing the bandanas, adding reinforcements and grommets and wearing the new innovations daily to beta test his ideas.</p>
+              <p>First learning the art and utility of furoshiki in 2016, Cameron started utilizing it on a daily basis along with his burgeoning plant foraging practice. He started playing with new ways of keeping a bandana fashioned into a sack on his hip, and was happy to find a use for his new sewing machine.  Experimenting with cloth, adding reinforcements for grommets and wearing the new innovations daily allowed for continuous improvements.</p>
               <p>Five years of innovative tinkering later, with much credit to friends and family feedback, the first commercial release was sold at a Holiday market in Oakland in 2021 to a huge success! </p>
               <p>Cameron plays a crucial role in the creation of each sacshiki, doing many of the steps found in the article <a href="/explore/making-a-sacshiki">Making of a Sacshiki.</a></p>
             </div>
