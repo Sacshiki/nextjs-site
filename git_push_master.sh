@@ -29,4 +29,4 @@ git merge master
 git log -1
 git checkout develop
 
-open "https://circleci.com/bb/shopvida/cadabra"
+open "https://vercel.com/cpres/nextjs-site/deployments"

@@ -1,11 +1,10 @@
-
-
+import React, { useEffect } from 'react'
 import { withRouter, useRouter } from "next/router";
 const { getGalleries } = require('../../utils/strapi.js')
 import Head from 'next/head'
 import Header from '../../components/header.js'
 import Footer from '../../components/footer.js'
-import Banner from '../../components/banner.js'
+import EmblaCarousel from '../../components/slideshow/slideshow.js'
 
 function flatten(text, child) {
     return typeof child === 'string'
@@ -20,8 +19,8 @@ function HeadingRenderer(props) {
     return React.createElement('h' + props.level, {id: product}, props.children)
 }
 
-function Product({ product, galleries }) {
-
+function Product({ product }) {
+    const slides= [{url:'https://storage.googleapis.com/cdn.sacshiki.com/slide/IMG_3492-Edit.jpg'}]
   return <>
     <Head>
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
@@ -30,32 +29,10 @@ function Product({ product, galleries }) {
       <script async charSet="utf-8" src="//cdn.iframe.ly/embed.js" ></script>
       <title>Sacshiki - Your Favorite Pocket</title>
     </Head>
-    <Header galleries={galleries}/>
 
-    <div>
-      <Banner images={product.media} text={product.title}/>
-      {/* {article.galleries && article.galleries.length > 0 ? 
-        <div id='slide1'>
-          <Gallery gallery={article.galleries[0]} slug={article.galleries[0].slug} captions={true} speed={7000} />
-        </div>
-        : ''
-      }  */}
-      <div id="section">
-        
-        <article>
-        <div id="my-store-25007298"></div>
-        <div>
-            <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?25007298&data_platform=code&data_date=2020-02-23" charSet="utf-8"></script>
-            <script type="text/javascript">
-            xProductBrowser("categoriesPerRow=3","views=grid(20,3) list(60) table(60)","categoryView=grid","searchView=list","id=my-store-25007298");
-            </script>
-        </div>
-
-        </article>
-      </div>
-
+    <div className="container">
+        <EmblaCarousel slides={slides} />
     </div>
-
     <Footer/>
 
     <style jsx global>{`
@@ -72,6 +49,17 @@ function Product({ product, galleries }) {
       article > * {
         min-width: 0;
     }
+
+    .embla {
+        overflow: hidden;
+      }
+      .embla__container {
+        display: flex;
+      }
+      .embla__slide {
+        position: relative;
+        flex: 0 0 100%;
+      }
 
     article {
       margin-top: 15px
@@ -211,13 +199,6 @@ function Product({ product, galleries }) {
           display: flex;
           flex-direction: column-reverse;
           justify-content: center;
-        }
-        #slide1 {
-          height: 100vw;
-          width: 100vw;
-          margin-left: 0px;
-          margin-right: 0px;
-          padding: 40px;
         }
       }
     `}</style>

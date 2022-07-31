@@ -1,6 +1,6 @@
 import stylesheet from 'antd/dist/antd.min.css'
 import customstyle from '../static/custom.css'
-
+import "../static/embla.css";
 // import App from 'next/app'
 
 function MyApp({ Component, pageProps }) {

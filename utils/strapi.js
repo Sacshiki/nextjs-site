@@ -24,6 +24,7 @@ const getGalleries = () => {
 }
 
 const getGallery = (gallerySlug, galleries) => {
+  if (!galleries) return
   // knowledge-subdomain path allows for caching with CloudFlare
   let gallery = galleries.find(gal=>gal.slug == gallerySlug)
   if (process.env.ENVIRONMENT == "test" && gallery.slides) {

@@ -5,6 +5,7 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^4.19.5",
     "dotenv": "^8.2.0",
+    "embla-carousel-react": "^7.0.0-rc05",
     "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",
     "next": "^9.0.5",
